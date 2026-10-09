@@ -1,478 +1,873 @@
-
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#080609">
-<title>AMIR ALI | UNKNOWN</title>
-<style>
-:root {
-  --bg:#080609;
-  --panel:#110c12;
-  --red:#ff1744;
-  --purple:#a855f7;
-  --text:#f6f0f6;
-  --muted:#a49aa8;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:75px}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:system-ui,-apple-system,sans-serif;
-  overflow-x:hidden;
-}
-body::before{
-  content:"";position:fixed;inset:0;z-index:-2;
-  background:
-    radial-gradient(ellipse at 15% 15%,#7f10251b,transparent 45%),
-    radial-gradient(ellipse at 85% 55%,#7e22ce17,transparent 40%);
-  pointer-events:none;
-}
-a{color:inherit;text-decoration:none}
-button,input{font:inherit}
-button,a{-webkit-tap-highlight-color:transparent}
-::selection{background:var(--red);color:white}
-.wrap{width:min(1080px,92%);margin:auto}
-header{
-  height:68px;position:sticky;top:0;z-index:10;
-  background:#080609df;backdrop-filter:blur(18px);
-  border-bottom:1px solid #ffffff12;
-}
-.nav{height:100%;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:22px;font-weight:950;letter-spacing:1px}
-.logo span{color:var(--red);text-shadow:0 0 18px #ff174455}
-.navlinks{display:flex;gap:22px;font-size:13px;color:var(--muted)}
-.navlinks a:hover{color:var(--red)}
-.pill{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:9px 15px;border:1px solid #ff174466;
-  border-radius:999px;color:#ff708a;font-size:12px;
-  background:#ff17440a;
-}
-.hero{
-  min-height:570px;display:grid;
-  grid-template-columns:1.1fr .9fr;
-  align-items:center;gap:35px;padding-top:55px;padding-bottom:55px;
-}
-.eyebrow{color:var(--red);font-size:12px;letter-spacing:3px}
-h1{
-  font-size:clamp(42px,8vw,82px);line-height:1.1;
-  margin:18px 0;font-weight:950;letter-spacing:-2px;
-}
-.glitch{
-  color:#fff;text-shadow:3px 0 var(--red),-3px 0 var(--purple);
-  animation:flicker 5s infinite;
-}
-@keyframes flicker{
-  0%,94%,100%{opacity:1}
-  95%{opacity:.75}
-  96%{opacity:1;transform:translateX(1px)}
-}
-.subtitle{color:#d8cad9;letter-spacing:2px;font-size:13px}
-.description{color:var(--muted);line-height:2;font-size:14px;max-width:460px}
-.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
-.btn{
-  display:inline-flex;justify-content:center;align-items:center;
-  padding:12px 18px;border-radius:10px;border:1px solid #ffffff24;
-  font-size:13px;cursor:pointer;transition:.25s;
-}
-.btn.primary{background:var(--red);border-color:var(--red);color:white}
-.btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px #ff174426}
-.socials{display:flex;gap:17px;margin-top:26px;color:#c9bdcc;font-size:13px}
-.socials a:hover{color:var(--red)}
-.portrait{
-  position:relative;max-width:360px;width:100%;margin:auto;
-  aspect-ratio:4/5;border-radius:25px;overflow:hidden;
-  border:1px solid #ff174455;
-  background:linear-gradient(145deg,#2c101c,#100c14 55%,#26103b);
-  box-shadow:0 0 60px #ff174410,12px 12px 0 #a855f70a;
-}
-.portrait img{width:100%;height:100%;object-fit:cover;display:block}
-.portrait::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(0deg,#080609d9,transparent 55%);
-  pointer-events:none;
-}
-.portrait-label{position:absolute;bottom:20px;right:20px;z-index:1}
-.portrait-label strong{display:block;font-size:22px}
-.portrait-label small{color:#ff718c;letter-spacing:2px}
-.corner{
-  position:absolute;top:15px;left:15px;z-index:2;
-  border:1px solid #ff174477;color:#ff718c;
-  padding:7px 10px;font:11px monospace;
-}
-section{padding:65px 0;border-top:1px solid #ffffff0d}
-.section-tag{color:var(--red);font:12px monospace;letter-spacing:2px}
-h2{font-size:clamp(24px,4vw,36px);margin:12px 0}
-.section-intro{color:var(--muted);font-size:14px;line-height:1.9}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
-.panel{
-  border:1px solid #ffffff14;border-radius:16px;padding:22px;
-  background:linear-gradient(145deg,#ffffff06,#ffffff01);
-}
-.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-.fact{padding:13px;background:#ffffff05;border-radius:10px}
-.fact small{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}
-.fact strong{font-size:13px}
-.dot{display:inline-block;width:7px;height:7px;background:#4ade80;border-radius:50%;margin-left:5px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:25px}
-.project{
-  padding:22px;border:1px solid #ffffff16;border-radius:15px;
-  background:var(--panel);transition:.25s;
-}
-.project:hover{transform:translateY(-5px);border-color:#ff174466}
-.project-icon{font-size:25px;color:var(--red)}
-.project h3{font-size:16px;margin:15px 0 8px}
-.project p{font-size:13px;line-height:1.9;color:var(--muted);min-height:48px}
-.project a{font-size:12px;color:#ff718c}
-.skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
-.skill{padding:10px 14px;border:1px solid #ffffff19;border-radius:9px;color:#d9cbdc;font-size:12px}
-.terminal{
-  border:1px solid #ff174455;border-radius:14px;overflow:hidden;
-  background:#050507;font-family:ui-monospace,monospace;
-  direction:ltr;text-align:left;
-}
-.term-head{padding:12px 15px;border-bottom:1px solid #ffffff15;color:#a49aa8;font-size:12px}
-.term-body{padding:17px;min-height:180px;font-size:13px;line-height:1.9;color:#c9c2ce;white-space:pre-wrap;overflow-wrap:anywhere}
-.term-green{color:#4ade80}
-.term-form{display:flex;padding:0 15px 15px;gap:9px}
-.term-form label{color:#4ade80}
-.term-form input{min-width:0;flex:1;background:transparent;border:0;outline:0;color:white}
-.term-form button{background:transparent;color:var(--red);border:0;cursor:pointer}
-.music{
-  display:flex;align-items:center;gap:13px;flex-wrap:wrap;
-  padding:16px;border:1px solid #ffffff16;border-radius:14px;
-  background:#ffffff04;margin-top:20px;
-}
-.music-info{flex:1;min-width:130px}
-.music-info strong{font-size:13px;display:block}
-.music-info small{color:var(--muted)}
-.music button{background:#1b1018;border:1px solid #ff174466;color:#ff718c;border-radius:9px;padding:10px 13px;cursor:pointer}
-footer{padding:28px 0;color:var(--muted);font-size:12px}
-.footer-row{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-#welcome{
-  position:fixed;inset:0;z-index:99;display:grid;place-items:center;
-  background:#080609;transition:opacity .8s,visibility .8s;
-}
-#welcome.hide{opacity:0;visibility:hidden;pointer-events:none}
-.welcome-card{text-align:center;padding:35px 25px}
-.welcome-card .logo{font-size:36px;margin-bottom:15px}
-.welcome-card p{color:var(--muted);font-size:13px;margin-bottom:25px}
-.enter{animation:pulse 2s infinite}
-@keyframes pulse{50%{box-shadow:0 0 25px #ff174455}}
-#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#20121d;border:1px solid #ff174455;padding:12px 16px;border-radius:10px;font-size:12px;display:none;z-index:100}
-@media(max-width:700px){
-  .navlinks{gap:12px;font-size:11px}
-  .navlinks a:nth-child(2){display:none}
-  .hero{grid-template-columns:1fr;gap:30px;padding-top:45px;text-align:center}
-  .hero .description{margin:auto}
-  .actions,.socials{justify-content:center}
-  .portrait{max-width:270px;grid-row:1}
-  .about-grid{grid-template-columns:1fr}
-  .cards{grid-template-columns:1fr}
-  section{padding:48px 0}
-  .facts{text-align:right}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeBuG - Amir Ali Portfolio</title>
+    <!-- فونت‌های گوگل برای استایل سایبرپانکی -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #030305;
+            --panel-bg: rgba(10, 10, 15, 0.7);
+            --primary-red: #ff003c;
+            --primary-red-glow: rgba(255, 0, 60, 0.4);
+            --text-main: #e0e0e0;
+            --text-muted: #8a8a93;
+            --border-color: rgba(255, 0, 60, 0.2);
+            --font-main: 'Share Tech Mono', monospace;
+            --font-heading: 'Orbitron', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* افکت پس‌زمینه نئونی */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 70% 20%, rgba(255, 0, 60, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 20% 80%, rgba(10, 10, 30, 0.8) 0%, transparent 100%);
+            z-index: -1;
+        }
+
+        /* کانتینر اصلی صفحه */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px 40px;
+        }
+
+        /* هدر سایت */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #fff;
+        }
+
+        .logo span {
+            color: var(--primary-red);
+            text-shadow: 0 0 10px var(--primary-red-glow);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .header-icons i:hover {
+            color: var(--primary-red);
+        }
+
+        /* طرح‌بندی اصلی با سایدبار و محتوا */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 40px;
+        }
+
+        /* منوی کناری (Sidebar) */
+        sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding-top: 10px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+            border-left: 2px solid transparent;
+        }
+
+        .nav-link i {
+            color: var(--primary-red);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #fff;
+            background: linear-gradient(90deg, rgba(255,0,60,0.1), transparent);
+            border-left: 2px solid var(--primary-red);
+        }
+
+        /* محتوای اصلی */
+        .content-area {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        /* بخش اول: هیرو (Hero Section) */
+        .hero-section {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-text h3 {
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .glitch-title {
+            font-family: var(--font-heading);
+            font-size: 52px;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px var(--primary-red), -2px -2px #00ffff;
+        }
+
+        .hero-subtitle {
+            font-size: 16px;
+            color: var(--primary-red);
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .hero-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .location-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(15, 15, 20, 0.8);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            color: var(--primary-red);
+            font-size: 13px;
+            margin-bottom: 30px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            font-size: 18px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--primary-red);
+            text-shadow: 0 0 8px var(--primary-red-glow);
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cyber-ring {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border: 2px dashed rgba(255, 0, 60, 0.4);
+            border-radius: 50%;
+            animation: rotateRing 20s linear infinite;
+        }
+
+        @keyframes rotateRing {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-img {
+            width: 280px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            filter: contrast(110%) brightness(90%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .scroll-down {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* عنوان بخش‌ها */
+        .section-header {
+            margin-bottom: 25px;
+        }
+
+        .section-number {
+            font-size: 13px;
+            color: var(--primary-red);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* بخش دوم: درباره من (About Me) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr 220px;
+            gap: 30px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .about-card-img {
+            position: relative;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .about-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .online-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            color: #00ff66;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid rgba(0, 255, 102, 0.2);
+        }
+
+        .online-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: #00ff66;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #00ff66;
+        }
+
+        .about-info-list {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            font-size: 12px;
+            color: #aaa;
+            line-height: 1.5;
+        }
+
+        .about-info-list span {
+            color: #fff;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .about-text p {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tag {
+            padding: 6px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .tag:hover {
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+        }
+
+        .stats-column {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            padding-left: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-item i {
+            font-size: 22px;
+            color: var(--primary-red);
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* بخش سوم: پروژه‌ها (Projects) */
+        .projects-header-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .view-all {
+            font-size: 13px;
+            color: var(--primary-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+            box-shadow: 0 5px 20px rgba(255, 0, 60, 0.15);
+        }
+
+        .project-img-box {
+            height: 140px;
+            background: #08080c;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .project-img-box img {
+            width: 85%;
+            height: 80%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .project-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            justify-content: space-between;
+        }
+
+        .project-title {
+            font-family: var(--font-heading);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .project-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .project-link {
+            font-size: 12px;
+            color: var(--primary-red);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* بخش چهارم: ترمینال و مهارت‌ها (Terminal & Skills) */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 30px;
+        }
+
+        .terminal-box {
+            background: #050508;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: var(--font-main);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #0a0a10;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background: #ff5f56; }
+        .dot-yellow { background: #ffbd2e; }
+        .dot-green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 20px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-main);
+            height: 250px;
+            overflow-y: auto;
+        }
+
+        .t-cmd { color: #00ff66; }
+        .t-res { color: var(--text-muted); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+        }
+
+        .skill-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--primary-red);
+            background: rgba(255, 0, 60, 0.03);
+        }
+
+        .skill-card i {
+            font-size: 26px;
+            color: var(--primary-red);
+        }
+
+        .skill-name {
+            font-size: 11px;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        /* فوتر */
+        footer {
+            margin-top: 60px;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* واکنش‌گرایی برای موبایل و تبلت */
+        @media (max-width: 1100px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            sidebar {
+                display: none;
+            }
+            .hero-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div id="welcome">
-  <div class="welcome-card">
-    <div class="logo">AMIR ALI<span> //</span></div>
-    <p>WELCOME TO MY DIGITAL WORLD</p>
-    <button class="btn primary enter" id="enterBtn">ورود به دنیای من ↗</button>
-  </div>
-</div>
+    <div class="container">
+        <!-- هدر اصلی سایت -->
+        <header>
+            <div class="logo">De<span>BuG</span></div>
+            <div class="header-right">
+                <span>DEBUG / 2025</span>
+                <div class="header-icons">
+                    <i class="fa-solid fa-moon"></i>
+                    <i class="fa-solid fa-volume-high"></i>
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+            </div>
+        </header>
 
-<header>
-  <nav class="nav wrap">
-    <a href="#home" class="logo">De<span>BuG</span></a>
-    <div class="navlinks">
-      <a href="#home">خانه</a>
-      <a href="#about">درباره من</a>
-      <a href="#projects">پروژه‌ها</a>
-      <a href="#terminal">ترمینال</a>
-    </div>
-    <a class="pill" href="#contact">تماس ↗</a>
-  </nav>
-</header>
+        <!-- بدنه اصلی (سایدبار + بخش‌های محتوا) -->
+        <div class="main-layout">
+            <!-- منوی ناوبری کناری -->
+            <sidebar>
+                <a href="#" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-user"></i> About</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-code"></i> Projects</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-layer-group"></i> Skills</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-terminal"></i> Terminal</a>
+                <a href="#" class="nav-link"><i class="fa-solid fa-envelope"></i> Contact</a>
+            </sidebar>
 
-<main>
-  <div class="wrap hero" id="home">
-    <div>
-      <div class="eyebrow">DIGITAL IDENTITY / 01</div>
-      <h1 class="glitch">AMIR ALI</h1>
-      <div class="subtitle">DEVELOPER &nbsp; / &nbsp; CREATOR</div>
-      <p class="description">
-        به دنیای دیجیتال من خوش اومدی.
-        اینجا جاییه که ایده‌ها به پروژه تبدیل می‌شن.
-        همیشه در حال یادگیری، ساختن و پیشرفت.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href="#projects">مشاهده پروژه‌ها ↗</a>
-        <a class="btn" href="#about">بیشتر درباره من</a>
-      </div>
-      <div class="socials">
-        <a href="https://t.me/Amirali_Zare" target="_blank" rel="noopener">TELEGRAM ↗</a>
-        <a href="https://www.instagram.com/amira_lizare7" target="_blank" rel="noopener">INSTAGRAM ↗</a>
-      </div>
-    </div>
+            <!-- ستون محتوا -->
+            <div class="content-area">
+                
+                <!-- بخش اول: هیرو (مقدمه و عکس پروفایل) -->
+                <section class="hero-section">
+                    <div class="hero-text">
+                        <h3>HELLO, I'M</h3>
+                        <h1 class="glitch-title">AMIR ALI</h1>
+                        <p class="hero-subtitle">DEVELOPER &nbsp;/&nbsp; HACKER &nbsp;/&nbsp; DREAMER</p>
+                        <p class="hero-desc">
+                            Not just a developer...<br>
+                            I'm building the future, one line of code at a time.
+                        </p>
+                        <div class="location-badge">
+                            <i class="fa-solid fa-location-dot"></i> Tabriz
+                        </div>
+                        <div class="social-links">
+                            <a href="#"><i class="fa-brands fa-github"></i></a>
+                            <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper">
+                        <div class="cyber-ring"></div>
+                        <!-- تصویر پیش‌فرض جایگزین هیرو -->
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Amir Ali" class="hero-img">
+                        <div class="scroll-down">
+                            <span>Scroll Down</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </div>
+                    </div>
+                </section>
 
-    <div class="portrait">
-      <img src="profile.jpg" alt="تصویر پروفایل امیرعلی"
-           onerror="this.style.display='none'">
-      <div class="corner">IDENTITY: 001</div>
-      <div class="portrait-label">
-        <strong>AMIR ALI</strong>
-        <small>UNKNOWN / TABRIZ</small>
-      </div>
-    </div>
-  </div>
+                <!-- بخش دوم: درباره من (About Me) -->
+                <section>
+                    <div class="section-header">
+                        <div class="section-number">01. ABOUT ME</div>
+                        <div class="section-title">WHO AM I ?</div>
+                    </div>
+                    <div class="about-grid">
+                        <div class="about-card-img">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Amir Ali">
+                            <div class="online-badge">ONLINE</div>
+                            <div class="about-info-list">
+                                Name: <span>Amir Ali</span><br>
+                                Role: <span>Developer</span><br>
+                                Location: <span>Tabriz</span><br>
+                                Status: <span>Online</span>
+                            </div>
+                        </div>
+                        <div class="about-text">
+                            <h2>WHO AM I ?</h2>
+                            <p>
+                                I'm Amir Ali, a passionate developer, problem solver and tech enthusiast. I love working with modern technologies, building useful tools, and exploring the endless possibilities of the digital world.
+                            </p>
+                            <div class="tags-container">
+                                <span class="tag">Web Development</span>
+                                <span class="tag">Cyber Security</span>
+                                <span class="tag">Linux</span>
+                                <span class="tag">Python</span>
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">UI/UX</span>
+                            </div>
+                        </div>
+                        <div class="stats-column">
+                            <div class="stat-item">
+                                <i class="fa-solid fa-code"></i>
+                                <div>
+                                    <div class="stat-number">5+</div>
+                                    <div class="stat-label">Projects</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fa-solid fa-user-group"></i>
+                                <div>
+                                    <div class="stat-number">1K+</div>
+                                    <div class="stat-label">Visitors</div>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fa-solid fa-clock"></i>
+                                <div>
+                                    <div class="stat-number">100%</div>
+                                    <div class="stat-label">Motivation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-  <section id="about">
-    <div class="wrap about-grid">
-      <div>
-        <div class="section-tag">01 / ABOUT</div>
-        <h2>پشت این هویت کیه؟</h2>
-        <p class="section-intro">
-          من امیرعلی‌ام؛ علاقه‌مند به تکنولوژی، طراحی وب و ساخت ابزارهای دیجیتال.
-          این صفحه هویت آنلاین منه؛ ساده، متفاوت و همیشه در حال پیشرفت.
-        </p>
-        <div class="skills">
-          <span class="skill">Web Development</span>
-          <span class="skill">UI / UX</span>
-          <span class="skill">Technology</span>
-          <span class="skill">Creative Ideas</span>
+                <!-- بخش سوم: پروژه‌ها (Projects) -->
+                <section>
+                    <div class="projects-header-wrapper">
+                        <div>
+                            <div class="section-number">02. MY PROJECTS</div>
+                            <div class="section-title">Some of my recent works.</div>
+                        </div>
+                        <a href="#" class="view-all">View All Projects <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                    <div class="projects-grid">
+                        <!-- پروژه اول -->
+                        <div class="project-card">
+                            <div class="project-img-box">
+                                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80" alt="Config Builder">
+                            </div>
+                            <div class="project-content">
+                                <div>
+                                    <div class="project-title">Config Builder</div>
+                                    <div class="project-desc">A simple and powerful config builder for X-UI panel.</div>
+                                </div>
+                                <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- پروژه دوم -->
+                        <div class="project-card">
+                            <div class="project-img-box">
+                                <img src="https://images.unsplash.com/photo-1618401471353-b98aedd04e11?auto=format&fit=crop&w=400&q=80" alt="Upload Platform">
+                            </div>
+                            <div class="project-content">
+                                <div>
+                                    <div class="project-title">Upload Platform</div>
+                                    <div class="project-desc">Fast and secure file upload service.</div>
+                                </div>
+                                <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- پروژه سوم -->
+                        <div class="project-card">
+                            <div class="project-img-box">
+                                <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=400&q=80" alt="GitHub Repositories">
+                            </div>
+                            <div class="project-content">
+                                <div>
+                                    <div class="project-title">GitHub Repositories</div>
+                                    <div class="project-desc">My public repositories and open source projects.</div>
+                                </div>
+                                <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- پروژه چهارم -->
+                        <div class="project-card">
+                            <div class="project-img-box">
+                                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=400&q=80" alt="More Projects">
+                            </div>
+                            <div class="project-content">
+                                <div>
+                                    <div class="project-title">More Projects</div>
+                                    <div class="project-desc">Different tools, scripts and experiments in my journey.</div>
+                                </div>
+                                <a href="#" class="project-link">View Project <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- بخش چهارم: ترمینال و مهارت‌ها (Terminal & Skills) -->
+                <div class="bottom-grid">
+                    <!-- ترمینال -->
+                    <section>
+                        <div class="section-header">
+                            <div class="section-number">03. TERMINAL</div>
+                            <div class="section-title">Try some commands...</div>
+                        </div>
+                        <div class="terminal-box">
+                            <div class="terminal-header">
+                                <div class="terminal-dots">
+                                    <div class="dot dot-red"></div>
+                                    <div class="dot dot-yellow"></div>
+                                    <div class="dot dot-green"></div>
+                                </div>
+                            </div>
+                            <div class="terminal-body">
+                                <div class="t-cmd">amir@debig:~$ help</div>
+                                <div class="t-res">
+                                    Available commands:<br>
+                                    &nbsp;&nbsp;about&nbsp;&nbsp;&nbsp;&nbsp;- About me<br>
+                                    &nbsp;&nbsp;projects&nbsp;- View my projects<br>
+                                    &nbsp;&nbsp;skills&nbsp;&nbsp;&nbsp;- My skills<br>
+                                    &nbsp;&nbsp;contact&nbsp;&nbsp;- Get in touch<br>
+                                    &nbsp;&nbsp;clear&nbsp;&nbsp;&nbsp;&nbsp;- Clear terminal
+                                </div>
+                                <br>
+                                <div class="t-cmd">amir@debig:~$ _</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- مهارت‌ها -->
+                    <section>
+                        <div class="section-header">
+                            <div class="section-number">04. SKILLS</div>
+                            <div class="section-title">Tools I work with.</div>
+                        </div>
+                        <div class="skills-grid">
+                            <div class="skill-card"><i class="fa-brands fa-html5"></i><span class="skill-name">HTML</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-css3-alt"></i><span class="skill-name">CSS</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-js"></i><span class="skill-name">JavaScript</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-python"></i><span class="skill-name">Python</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-php"></i><span class="skill-name">PHP</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-node-js"></i><span class="skill-name">Node.js</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-react"></i><span class="skill-name">React</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-git-alt"></i><span class="skill-name">Git</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-linux"></i><span class="skill-name">Linux</span></div>
+                            <div class="skill-card"><i class="fa-brands fa-docker"></i><span class="skill-name">Docker</span></div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- فوتر -->
+                <footer>
+                    <div>DeBuG &nbsp;&nbsp;|&nbsp;&nbsp; © 2025 Amir Ali. All rights reserved.</div>
+                    <div>Better Code &nbsp;/&nbsp; Better Future</div>
+                </footer>
+
+            </div>
         </div>
-      </div>
-      <div class="panel">
-        <div class="section-tag">PERSONAL CARD</div>
-        <div class="facts">
-          <div class="fact"><small>نام</small><strong>Amir Ali Zare</strong></div>
-          <div class="fact"><small>موقعیت</small><strong>📍 Tabriz</strong></div>
-          <div class="fact"><small>وضعیت</small><strong><i class="dot"></i>در حال پیشرفت</strong></div>
-          <div class="fact"><small>تمرکز</small><strong>Build & Create</strong></div>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <section id="projects">
-    <div class="wrap">
-      <div class="section-tag">02 / SELECTED WORK</div>
-      <h2>پروژه‌های من</h2>
-      <p class="section-intro">چند بخش برای معرفی کارها و پروژه‌های دیجیتال.</p>
-      <div class="cards">
-        <article class="project">
-          <div class="project-icon">⌘</div>
-          <h3>DeBuG Projects</h3>
-          <p>ابزارها و پروژه‌هایی که در مسیر یادگیری و توسعه ساخته می‌شن.</p>
-          <a href="https://github.com/" target="_blank" rel="noopener">مشاهده گیت‌هاب ↗</a>
-        </article>
-        <article class="project">
-          <div class="project-icon">◇</div>
-          <h3>Web Experiments</h3>
-          <p>ایده‌های تازه در طراحی رابط کاربری و تجربه‌های وب.</p>
-          <a href="#contact">اطلاعات بیشتر ↗</a>
-        </article>
-        <article class="project">
-          <div class="project-icon">⌁</div>
-          <h3>Next Project</h3>
-          <p>جایگاهی برای پروژه بعدی؛ آماده برای ایده‌های جدید.</p>
-          <a href="#contact">ارتباط با من ↗</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="terminal">
-    <div class="wrap">
-      <div class="section-tag">03 / INTERACTIVE SYSTEM</div>
-      <h2>ترمینال شخصی</h2>
-      <p class="section-intro">یکی از دستورها رو وارد کن: help، about، projects، contact، clear</p>
-      <div class="terminal">
-        <div class="term-head">amir-ali@unknown: ~</div>
-        <div class="term-body" id="termOutput"><span class="term-green">System ready.</span>
-Welcome to the personal terminal.
-Type 'help' to see available commands.</div>
-        <form class="term-form" id="termForm">
-          <label>visitor@unknown:~$</label>
-          <input id="termInput" aria-label="دستور ترمینال" autocomplete="off" spellcheck="false">
-          <button type="submit">RUN ↵</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <section id="music">
-    <div class="wrap">
-      <div class="section-tag">04 / SOUNDTRACK</div>
-      <h2>فضای خودت رو بساز</h2>
-      <p class="section-intro">پخش موسیقی اختیاریه؛ برای شروع روی دکمه پخش بزن.</p>
-      <div class="music">
-        <button id="playBtn" type="button">▶ پخش</button>
-        <button id="nextBtn" type="button">آهنگ بعدی ↗</button>
-        <div class="music-info">
-          <strong id="trackTitle">Music 1</strong>
-          <small id="trackTime">0:00 / 0:00</small>
-        </div>
-      </div>
-      <div style="margin-top:12px">
-        <input id="seek" type="range" min="0" max="100" value="0"
-          aria-label="موقعیت آهنگ" style="width:100%;accent-color:#ff1744">
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <div class="section-tag">05 / CONTACT</div>
-      <h2>ارتباط با من</h2>
-      <p class="section-intro">برای ارتباط مستقیم از شبکه‌های اجتماعی زیر استفاده کن.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://t.me/Amirali_Zare" target="_blank" rel="noopener">تلگرام ↗</a>
-        <a class="btn" href="https://www.instagram.com/amira_lizare7" target="_blank" rel="noopener">اینستاگرام ↗</a>
-        <button class="btn" id="copyBtn" type="button">کپی آدرس صفحه</button>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap footer-row">
-    <span>© <span id="year"></span> AMIR ALI / UNKNOWN</span>
-    <span>BUILT WITH IDEAS & CODE.</span>
-  </div>
-</footer>
-
-<audio id="audio" preload="metadata"></audio>
-<div id="toast" role="status"></div>
-
-<script>
-const $ = id => document.getElementById(id);
-
-$('year').textContent = new Date().getFullYear();
-
-$('enterBtn').addEventListener('click', () => {
-  $('welcome').classList.add('hide');
-});
-
-let toastTimer;
-function toast(message) {
-  $('toast').textContent = message;
-  $('toast').style.display = 'block';
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => $('toast').style.display = 'none', 2600);
-}
-
-$('copyBtn').addEventListener('click', async () => {
-  try {
-    await navigator.clipboard.writeText(location.href);
-    toast('آدرس صفحه کپی شد.');
-  } catch {
-    toast('آدرس صفحه را از نوار مرورگر کپی کن.');
-  }
-});
-
-const commands = {
-  help: 'Commands: help, about, projects, contact, clear',
-  about: 'Amir Ali Zare | Developer & Creator | Tabriz',
-  projects: 'Projects: DeBuG, Web Experiments, Next Project',
-  contact: 'Telegram: t.me/Amirali_Zare',
-};
-
-$('termForm').addEventListener('submit', event => {
-  event.preventDefault();
-  const command = $('termInput').value.trim().toLowerCase();
-  const output = $('termOutput');
-
-  if (!command) return;
-
-  if (command === 'clear') {
-    output.textContent = '';
-  } else {
-    const line = document.createElement('div');
-    line.textContent = 'visitor@unknown:~$ ' + command;
-    const result = document.createElement('div');
-    result.className = 'term-green';
-    result.textContent = commands[command] || 'Command not found. Type help.';
-    output.append(line, result);
-  }
-
-  $('termInput').value = '';
-  output.scrollTop = output.scrollHeight;
-});
-
-const playlist = [
-  { name: 'Music 1', src: 'music1.mp3' },
-  { name: 'Music 2', src: 'music2.mp3' },
-  { name: 'Music 3', src: 'music3.mp3' }
-];
-
-const audio = $('audio');
-let trackIndex = 0;
-
-function loadTrack() {
-  audio.src = playlist[trackIndex].src;
-  $('trackTitle').textContent = playlist[trackIndex].name;
-  $('seek').value = 0;
-  $('trackTime').textContent = '0:00 / 0:00';
-}
-
-function fmt(seconds) {
-  if (!Number.isFinite(seconds)) return '0:00';
-  return Math.floor(seconds / 60) + ':' +
-    String(Math.floor(seconds % 60)).padStart(2, '0');
-}
-
-async function playAudio() {
-  try {
-    await audio.play();
-    $('playBtn').textContent = '❚❚ توقف';
-  } catch {
-    toast('فایل موسیقی پیدا نشد یا قابل پخش نیست.');
-    $('playBtn').textContent = '▶ پخش';
-  }
-}
-
-$('playBtn').addEventListener('click', () => {
-  if (audio.paused) playAudio();
-  else {
-    audio.pause();
-    $('playBtn').textContent = '▶ پخش';
-  }
-});
-
-$('nextBtn').addEventListener('click', () => {
-  trackIndex = (trackIndex + 1) % playlist.length;
-  loadTrack();
-  playAudio();
-});
-
-audio.addEventListener('ended', () => {
-  trackIndex = (trackIndex + 1) % playlist.length;
-  loadTrack();
-  playAudio();
-});
-
-audio.addEventListener('timeupdate', () => {
-  $('trackTime').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
-  if (audio.duration) $('seek').value = audio.currentTime / audio.duration * 100;
-});
-
-$('seek').addEventListener('input', () => {
-  if (audio.duration) audio.currentTime = Number($('seek').value) / 100 * audio.duration;
-});
-
-audio.addEventListener('pause', () => $('playBtn').textContent = '▶ پخش');
-audio.addEventListener('play', () => $('playBtn').textContent = '❚❚ توقف');
-
-loadTrack();
-</script>
 </body>
 </html>
