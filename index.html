@@ -1,0 +1,478 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080609">
+<title>AMIR ALI | UNKNOWN</title>
+<style>
+:root {
+  --bg:#080609;
+  --panel:#110c12;
+  --red:#ff1744;
+  --purple:#a855f7;
+  --text:#f6f0f6;
+  --muted:#a49aa8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:75px}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:system-ui,-apple-system,sans-serif;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(ellipse at 15% 15%,#7f10251b,transparent 45%),
+    radial-gradient(ellipse at 85% 55%,#7e22ce17,transparent 40%);
+  pointer-events:none;
+}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+::selection{background:var(--red);color:white}
+.wrap{width:min(1080px,92%);margin:auto}
+header{
+  height:68px;position:sticky;top:0;z-index:10;
+  background:#080609df;backdrop-filter:blur(18px);
+  border-bottom:1px solid #ffffff12;
+}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:950;letter-spacing:1px}
+.logo span{color:var(--red);text-shadow:0 0 18px #ff174455}
+.navlinks{display:flex;gap:22px;font-size:13px;color:var(--muted)}
+.navlinks a:hover{color:var(--red)}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 15px;border:1px solid #ff174466;
+  border-radius:999px;color:#ff708a;font-size:12px;
+  background:#ff17440a;
+}
+.hero{
+  min-height:570px;display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;gap:35px;padding-top:55px;padding-bottom:55px;
+}
+.eyebrow{color:var(--red);font-size:12px;letter-spacing:3px}
+h1{
+  font-size:clamp(42px,8vw,82px);line-height:1.1;
+  margin:18px 0;font-weight:950;letter-spacing:-2px;
+}
+.glitch{
+  color:#fff;text-shadow:3px 0 var(--red),-3px 0 var(--purple);
+  animation:flicker 5s infinite;
+}
+@keyframes flicker{
+  0%,94%,100%{opacity:1}
+  95%{opacity:.75}
+  96%{opacity:1;transform:translateX(1px)}
+}
+.subtitle{color:#d8cad9;letter-spacing:2px;font-size:13px}
+.description{color:var(--muted);line-height:2;font-size:14px;max-width:460px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.btn{
+  display:inline-flex;justify-content:center;align-items:center;
+  padding:12px 18px;border-radius:10px;border:1px solid #ffffff24;
+  font-size:13px;cursor:pointer;transition:.25s;
+}
+.btn.primary{background:var(--red);border-color:var(--red);color:white}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px #ff174426}
+.socials{display:flex;gap:17px;margin-top:26px;color:#c9bdcc;font-size:13px}
+.socials a:hover{color:var(--red)}
+.portrait{
+  position:relative;max-width:360px;width:100%;margin:auto;
+  aspect-ratio:4/5;border-radius:25px;overflow:hidden;
+  border:1px solid #ff174455;
+  background:linear-gradient(145deg,#2c101c,#100c14 55%,#26103b);
+  box-shadow:0 0 60px #ff174410,12px 12px 0 #a855f70a;
+}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.portrait::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,#080609d9,transparent 55%);
+  pointer-events:none;
+}
+.portrait-label{position:absolute;bottom:20px;right:20px;z-index:1}
+.portrait-label strong{display:block;font-size:22px}
+.portrait-label small{color:#ff718c;letter-spacing:2px}
+.corner{
+  position:absolute;top:15px;left:15px;z-index:2;
+  border:1px solid #ff174477;color:#ff718c;
+  padding:7px 10px;font:11px monospace;
+}
+section{padding:65px 0;border-top:1px solid #ffffff0d}
+.section-tag{color:var(--red);font:12px monospace;letter-spacing:2px}
+h2{font-size:clamp(24px,4vw,36px);margin:12px 0}
+.section-intro{color:var(--muted);font-size:14px;line-height:1.9}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.panel{
+  border:1px solid #ffffff14;border-radius:16px;padding:22px;
+  background:linear-gradient(145deg,#ffffff06,#ffffff01);
+}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.fact{padding:13px;background:#ffffff05;border-radius:10px}
+.fact small{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}
+.fact strong{font-size:13px}
+.dot{display:inline-block;width:7px;height:7px;background:#4ade80;border-radius:50%;margin-left:5px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:25px}
+.project{
+  padding:22px;border:1px solid #ffffff16;border-radius:15px;
+  background:var(--panel);transition:.25s;
+}
+.project:hover{transform:translateY(-5px);border-color:#ff174466}
+.project-icon{font-size:25px;color:var(--red)}
+.project h3{font-size:16px;margin:15px 0 8px}
+.project p{font-size:13px;line-height:1.9;color:var(--muted);min-height:48px}
+.project a{font-size:12px;color:#ff718c}
+.skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.skill{padding:10px 14px;border:1px solid #ffffff19;border-radius:9px;color:#d9cbdc;font-size:12px}
+.terminal{
+  border:1px solid #ff174455;border-radius:14px;overflow:hidden;
+  background:#050507;font-family:ui-monospace,monospace;
+  direction:ltr;text-align:left;
+}
+.term-head{padding:12px 15px;border-bottom:1px solid #ffffff15;color:#a49aa8;font-size:12px}
+.term-body{padding:17px;min-height:180px;font-size:13px;line-height:1.9;color:#c9c2ce;white-space:pre-wrap;overflow-wrap:anywhere}
+.term-green{color:#4ade80}
+.term-form{display:flex;padding:0 15px 15px;gap:9px}
+.term-form label{color:#4ade80}
+.term-form input{min-width:0;flex:1;background:transparent;border:0;outline:0;color:white}
+.term-form button{background:transparent;color:var(--red);border:0;cursor:pointer}
+.music{
+  display:flex;align-items:center;gap:13px;flex-wrap:wrap;
+  padding:16px;border:1px solid #ffffff16;border-radius:14px;
+  background:#ffffff04;margin-top:20px;
+}
+.music-info{flex:1;min-width:130px}
+.music-info strong{font-size:13px;display:block}
+.music-info small{color:var(--muted)}
+.music button{background:#1b1018;border:1px solid #ff174466;color:#ff718c;border-radius:9px;padding:10px 13px;cursor:pointer}
+footer{padding:28px 0;color:var(--muted);font-size:12px}
+.footer-row{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+#welcome{
+  position:fixed;inset:0;z-index:99;display:grid;place-items:center;
+  background:#080609;transition:opacity .8s,visibility .8s;
+}
+#welcome.hide{opacity:0;visibility:hidden;pointer-events:none}
+.welcome-card{text-align:center;padding:35px 25px}
+.welcome-card .logo{font-size:36px;margin-bottom:15px}
+.welcome-card p{color:var(--muted);font-size:13px;margin-bottom:25px}
+.enter{animation:pulse 2s infinite}
+@keyframes pulse{50%{box-shadow:0 0 25px #ff174455}}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#20121d;border:1px solid #ff174455;padding:12px 16px;border-radius:10px;font-size:12px;display:none;z-index:100}
+@media(max-width:700px){
+  .navlinks{gap:12px;font-size:11px}
+  .navlinks a:nth-child(2){display:none}
+  .hero{grid-template-columns:1fr;gap:30px;padding-top:45px;text-align:center}
+  .hero .description{margin:auto}
+  .actions,.socials{justify-content:center}
+  .portrait{max-width:270px;grid-row:1}
+  .about-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  section{padding:48px 0}
+  .facts{text-align:right}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div id="welcome">
+  <div class="welcome-card">
+    <div class="logo">AMIR ALI<span> //</span></div>
+    <p>WELCOME TO MY DIGITAL WORLD</p>
+    <button class="btn primary enter" id="enterBtn">ورود به دنیای من ↗</button>
+  </div>
+</div>
+
+<header>
+  <nav class="nav wrap">
+    <a href="#home" class="logo">De<span>BuG</span></a>
+    <div class="navlinks">
+      <a href="#home">خانه</a>
+      <a href="#about">درباره من</a>
+      <a href="#projects">پروژه‌ها</a>
+      <a href="#terminal">ترمینال</a>
+    </div>
+    <a class="pill" href="#contact">تماس ↗</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero" id="home">
+    <div>
+      <div class="eyebrow">DIGITAL IDENTITY / 01</div>
+      <h1 class="glitch">AMIR ALI</h1>
+      <div class="subtitle">DEVELOPER &nbsp; / &nbsp; CREATOR</div>
+      <p class="description">
+        به دنیای دیجیتال من خوش اومدی.
+        اینجا جاییه که ایده‌ها به پروژه تبدیل می‌شن.
+        همیشه در حال یادگیری، ساختن و پیشرفت.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">مشاهده پروژه‌ها ↗</a>
+        <a class="btn" href="#about">بیشتر درباره من</a>
+      </div>
+      <div class="socials">
+        <a href="https://t.me/Amirali_Zare" target="_blank" rel="noopener">TELEGRAM ↗</a>
+        <a href="https://www.instagram.com/amira_lizare7" target="_blank" rel="noopener">INSTAGRAM ↗</a>
+      </div>
+    </div>
+
+    <div class="portrait">
+      <img src="profile.jpg" alt="تصویر پروفایل امیرعلی"
+           onerror="this.style.display='none'">
+      <div class="corner">IDENTITY: 001</div>
+      <div class="portrait-label">
+        <strong>AMIR ALI</strong>
+        <small>UNKNOWN / TABRIZ</small>
+      </div>
+    </div>
+  </div>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="section-tag">01 / ABOUT</div>
+        <h2>پشت این هویت کیه؟</h2>
+        <p class="section-intro">
+          من امیرعلی‌ام؛ علاقه‌مند به تکنولوژی، طراحی وب و ساخت ابزارهای دیجیتال.
+          این صفحه هویت آنلاین منه؛ ساده، متفاوت و همیشه در حال پیشرفت.
+        </p>
+        <div class="skills">
+          <span class="skill">Web Development</span>
+          <span class="skill">UI / UX</span>
+          <span class="skill">Technology</span>
+          <span class="skill">Creative Ideas</span>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="section-tag">PERSONAL CARD</div>
+        <div class="facts">
+          <div class="fact"><small>نام</small><strong>Amir Ali Zare</strong></div>
+          <div class="fact"><small>موقعیت</small><strong>📍 Tabriz</strong></div>
+          <div class="fact"><small>وضعیت</small><strong><i class="dot"></i>در حال پیشرفت</strong></div>
+          <div class="fact"><small>تمرکز</small><strong>Build & Create</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-tag">02 / SELECTED WORK</div>
+      <h2>پروژه‌های من</h2>
+      <p class="section-intro">چند بخش برای معرفی کارها و پروژه‌های دیجیتال.</p>
+      <div class="cards">
+        <article class="project">
+          <div class="project-icon">⌘</div>
+          <h3>DeBuG Projects</h3>
+          <p>ابزارها و پروژه‌هایی که در مسیر یادگیری و توسعه ساخته می‌شن.</p>
+          <a href="https://github.com/" target="_blank" rel="noopener">مشاهده گیت‌هاب ↗</a>
+        </article>
+        <article class="project">
+          <div class="project-icon">◇</div>
+          <h3>Web Experiments</h3>
+          <p>ایده‌های تازه در طراحی رابط کاربری و تجربه‌های وب.</p>
+          <a href="#contact">اطلاعات بیشتر ↗</a>
+        </article>
+        <article class="project">
+          <div class="project-icon">⌁</div>
+          <h3>Next Project</h3>
+          <p>جایگاهی برای پروژه بعدی؛ آماده برای ایده‌های جدید.</p>
+          <a href="#contact">ارتباط با من ↗</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="terminal">
+    <div class="wrap">
+      <div class="section-tag">03 / INTERACTIVE SYSTEM</div>
+      <h2>ترمینال شخصی</h2>
+      <p class="section-intro">یکی از دستورها رو وارد کن: help، about، projects، contact، clear</p>
+      <div class="terminal">
+        <div class="term-head">amir-ali@unknown: ~</div>
+        <div class="term-body" id="termOutput"><span class="term-green">System ready.</span>
+Welcome to the personal terminal.
+Type 'help' to see available commands.</div>
+        <form class="term-form" id="termForm">
+          <label>visitor@unknown:~$</label>
+          <input id="termInput" aria-label="دستور ترمینال" autocomplete="off" spellcheck="false">
+          <button type="submit">RUN ↵</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="music">
+    <div class="wrap">
+      <div class="section-tag">04 / SOUNDTRACK</div>
+      <h2>فضای خودت رو بساز</h2>
+      <p class="section-intro">پخش موسیقی اختیاریه؛ برای شروع روی دکمه پخش بزن.</p>
+      <div class="music">
+        <button id="playBtn" type="button">▶ پخش</button>
+        <button id="nextBtn" type="button">آهنگ بعدی ↗</button>
+        <div class="music-info">
+          <strong id="trackTitle">Music 1</strong>
+          <small id="trackTime">0:00 / 0:00</small>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <input id="seek" type="range" min="0" max="100" value="0"
+          aria-label="موقعیت آهنگ" style="width:100%;accent-color:#ff1744">
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-tag">05 / CONTACT</div>
+      <h2>ارتباط با من</h2>
+      <p class="section-intro">برای ارتباط مستقیم از شبکه‌های اجتماعی زیر استفاده کن.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://t.me/Amirali_Zare" target="_blank" rel="noopener">تلگرام ↗</a>
+        <a class="btn" href="https://www.instagram.com/amira_lizare7" target="_blank" rel="noopener">اینستاگرام ↗</a>
+        <button class="btn" id="copyBtn" type="button">کپی آدرس صفحه</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© <span id="year"></span> AMIR ALI / UNKNOWN</span>
+    <span>BUILT WITH IDEAS & CODE.</span>
+  </div>
+</footer>
+
+<audio id="audio" preload="metadata"></audio>
+<div id="toast" role="status"></div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+$('year').textContent = new Date().getFullYear();
+
+$('enterBtn').addEventListener('click', () => {
+  $('welcome').classList.add('hide');
+});
+
+let toastTimer;
+function toast(message) {
+  $('toast').textContent = message;
+  $('toast').style.display = 'block';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => $('toast').style.display = 'none', 2600);
+}
+
+$('copyBtn').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText(location.href);
+    toast('آدرس صفحه کپی شد.');
+  } catch {
+    toast('آدرس صفحه را از نوار مرورگر کپی کن.');
+  }
+});
+
+const commands = {
+  help: 'Commands: help, about, projects, contact, clear',
+  about: 'Amir Ali Zare | Developer & Creator | Tabriz',
+  projects: 'Projects: DeBuG, Web Experiments, Next Project',
+  contact: 'Telegram: t.me/Amirali_Zare',
+};
+
+$('termForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const command = $('termInput').value.trim().toLowerCase();
+  const output = $('termOutput');
+
+  if (!command) return;
+
+  if (command === 'clear') {
+    output.textContent = '';
+  } else {
+    const line = document.createElement('div');
+    line.textContent = 'visitor@unknown:~$ ' + command;
+    const result = document.createElement('div');
+    result.className = 'term-green';
+    result.textContent = commands[command] || 'Command not found. Type help.';
+    output.append(line, result);
+  }
+
+  $('termInput').value = '';
+  output.scrollTop = output.scrollHeight;
+});
+
+const playlist = [
+  { name: 'Music 1', src: 'music1.mp3' },
+  { name: 'Music 2', src: 'music2.mp3' },
+  { name: 'Music 3', src: 'music3.mp3' }
+];
+
+const audio = $('audio');
+let trackIndex = 0;
+
+function loadTrack() {
+  audio.src = playlist[trackIndex].src;
+  $('trackTitle').textContent = playlist[trackIndex].name;
+  $('seek').value = 0;
+  $('trackTime').textContent = '0:00 / 0:00';
+}
+
+function fmt(seconds) {
+  if (!Number.isFinite(seconds)) return '0:00';
+  return Math.floor(seconds / 60) + ':' +
+    String(Math.floor(seconds % 60)).padStart(2, '0');
+}
+
+async function playAudio() {
+  try {
+    await audio.play();
+    $('playBtn').textContent = '❚❚ توقف';
+  } catch {
+    toast('فایل موسیقی پیدا نشد یا قابل پخش نیست.');
+    $('playBtn').textContent = '▶ پخش';
+  }
+}
+
+$('playBtn').addEventListener('click', () => {
+  if (audio.paused) playAudio();
+  else {
+    audio.pause();
+    $('playBtn').textContent = '▶ پخش';
+  }
+});
+
+$('nextBtn').addEventListener('click', () => {
+  trackIndex = (trackIndex + 1) % playlist.length;
+  loadTrack();
+  playAudio();
+});
+
+audio.addEventListener('ended', () => {
+  trackIndex = (trackIndex + 1) % playlist.length;
+  loadTrack();
+  playAudio();
+});
+
+audio.addEventListener('timeupdate', () => {
+  $('trackTime').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  if (audio.duration) $('seek').value = audio.currentTime / audio.duration * 100;
+});
+
+$('seek').addEventListener('input', () => {
+  if (audio.duration) audio.currentTime = Number($('seek').value) / 100 * audio.duration;
+});
+
+audio.addEventListener('pause', () => $('playBtn').textContent = '▶ پخش');
+audio.addEventListener('play', () => $('playBtn').textContent = '❚❚ توقف');
+
+loadTrack();
+</script>
+</body>
+</html>
