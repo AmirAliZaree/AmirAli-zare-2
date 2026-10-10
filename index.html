@@ -1,97 +1,459 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<title>Premium Neumorphic Login</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="code-with-nazia.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMIR ALI ZARE | امیرعلی زارع</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@600;700&family=Vazirmatn:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050508;
+            --card-bg: rgba(14, 16, 23, 0.75);
+            --primary-neon: #ff0055;
+            --secondary-neon: #00f0ff;
+            --text-main: #ffffff;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+
+        /* قفل کردن کامل صفحه و جلوگیری از اسکرول خوردن کل بادی */
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -2;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: -1;
+            opacity: 0.25;
+            animation: floatBlob 10s infinite alternate ease-in-out;
+        }
+        .blob-1 { background: var(--primary-neon); top: -10%; right: -10%; }
+        .blob-2 { background: var(--secondary-neon); bottom: -10%; left: -10%; animation-delay: -5s; }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 40px) scale(1.1); }
+        }
+
+        /* Header فیکس شده بالا */
+        header {
+            position: fixed;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 1100px;
+            background: rgba(10, 12, 18, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            padding: 10px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: 3px;
+        }
+
+        .nav-logo span {
+            color: var(--primary-neon);
+            text-shadow: 0 0 12px var(--primary-neon);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-links span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* کانتینر اصلی تمام‌صفحه و فیکس */
+        .container {
+            width: 100vw;
+            height: 100vh;
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 90px 20px 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr 220px;
+            gap: 20px;
+            align-items: center; /* فیکس شدن المان‌ها وسط صفحه بدون تکان خوردن */
+            justify-content: center;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ستون سمت چپ: پروفایل */
+        .profile-card {
+            text-align: center;
+        }
+
+        .avatar-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/5;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid rgba(255, 0, 85, 0.4);
+            margin-bottom: 12px;
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.25);
+        }
+
+        .avatar-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 0, 85, 0.12);
+            border: 1px solid rgba(255, 0, 85, 0.4);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--primary-neon);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-neon);
+        }
+
+        /* ستون وسط: اطلاعات و دکمه‌ها */
+        .hero-card {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.95rem;
+            color: var(--secondary-neon);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .hero-title-en {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary-neon) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .hero-bio {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.85rem;
+            cursor: pointer;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-neon), #bd003b);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* ستون سمت راست: شبکه‌های اجتماعی فیکس */
+        .social-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-title {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: #fff;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .social-link i { font-size: 1.1rem; }
+        .social-link.instagram:hover { background: rgba(225, 48, 108, 0.15); border-color: #e1306c; }
+        .social-link.instagram i { color: #e1306c; }
+        .social-link.telegram:hover { background: rgba(0, 136, 204, 0.15); border-color: #0088cc; }
+        .social-link.telegram i { color: #0088cc; }
+        .social-link.github:hover { background: rgba(255, 255, 255, 0.15); border-color: #ffffff; }
+        .social-link.github i { color: #ffffff; }
+
+        /* ریسپانسیو برای موبایل (قرارگیری زیر هم بدون اسکرول سنگین) */
+        @media (max-width: 992px) {
+            body { height: auto; overflow-y: auto; }
+            .container {
+                grid-template-columns: 1fr;
+                height: auto;
+                padding: 80px 15px 30px;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<div class="login-wrapper">
-    <div class="flip-scene" id="flipScene">
-        <div class="flip-card">
+    <div class="cyber-grid"></div>
+    <canvas id="particles-canvas"></canvas>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
 
-            <!-- FRONT — LOGIN -->
-            <div class="glass-circle front">
-                <div class="accent-ring"></div>
+    <header>
+        <div class="nav-logo">AMIR<span>ALI</span></div>
+        <ul class="nav-links">
+            <li><span>فیکس و پایدار</span></li>
+        </ul>
+    </header>
 
-                <form class="login-form">
-                    <h1>Login</h1>
-                    <div class="subtitle">Sign in to your account</div>
+    <div class="container">
+        <!-- ستون چپ -->
+        <div class="glass-card profile-card">
+            <div class="avatar-box">
+                <img src="profile.jpg" alt="امیرعلی زارع" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop'">
+            </div>
+            <div class="status-badge">
+                <span class="badge-dot"></span>
+                آماده برای پروژه‌ها
+            </div>
+        </div>
 
-                    <div class="input-box">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Username" autocomplete="off">
+        <!-- ستون وسط -->
+        <div class="hero-card">
+            <div class="glass-card">
+                <div class="hero-subtitle">CREATIVE DEVELOPER & UI/UX DESIGNER</div>
+                <h1 class="hero-title-en">AMIR ALI ZARE</h1>
+                <p class="hero-bio">
+                    من امیرعلی زارع هستم؛ طراح و توسعه‌دهنده با تمرکز بر خلق تجربه‌های دیجیتال مدرن و پورتفولیوهای سایبرپانک.
+                </p>
+
+                <div class="stats-row" style="margin-top: 12px;">
+                    <div class="stat-box">
+                        <div class="stat-number">+۷</div>
+                        <div class="stat-label">سال تجربه</div>
                     </div>
-
-                    <div class="input-box">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Password" autocomplete="off">
+                    <div class="stat-box">
+                        <div class="stat-number">+۵۰</div>
+                        <div class="stat-label">پروژه موفق</div>
                     </div>
-
-                    <div class="forgot">
-                        <div class="remember">
-                            <div class="switch" id="rememberSwitch"></div>
-                            Remember me
-                        </div>
-                        <a href="#">Forgot password?</a>
+                    <div class="stat-box">
+                        <div class="stat-number">۱۰۰٪</div>
+                        <div class="stat-label">رضایت</div>
                     </div>
+                </div>
 
-                    <button type="button">Sign In</button>
+                <div class="action-btns" style="margin-top: 15px;">
+                    <a href="https://t.me/Daniyal_shijaee" target="_blank" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> ارتباط در تلگرام</a>
+                </div>
+            </div>
+        </div>
 
-                    <div class="signup-text">Don't have an account? <a id="toSignup">Sign up</a></div>
-                </form>
+        <!-- ستون راست -->
+        <div class="glass-card social-card">
+            <div class="social-title">
+                <i class="fa-solid fa-share-nodes" style="color: var(--primary-neon);"></i>
+                شبکه‌های اجتماعی
             </div>
 
-            <!-- BACK — SIGN UP -->
-            <div class="glass-circle back">
-                <div class="accent-ring"></div>
+            <a href="https://instagram.com" target="_blank" class="social-link instagram">
+                <i class="fa-brands fa-instagram"></i>
+                اینستاگرام
+            </a>
 
-                <form class="login-form">
-                    <h1>Sign Up</h1>
-                    <div class="subtitle">Create your account</div>
+            <a href="https://t.me/Daniyal_shijaee" target="_blank" class="social-link telegram">
+                <i class="fa-brands fa-telegram"></i>
+                تلگرام
+            </a>
 
-                    <div class="input-box">
-                        <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Full name" autocomplete="off">
-                    </div>
-
-                    <div class="input-box">
-                        <i class="fa-solid fa-envelope"></i>
-                        <input type="email" placeholder="Email" autocomplete="off">
-                    </div>
-
-                    <div class="input-box" style="margin-bottom: 30px;">
-                        <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Password" autocomplete="off">
-                    </div>
-
-                    <button type="button">Create Account</button>
-
-                    <div class="signup-text">Already have an account? <a id="toLogin">Login</a></div>
-                </form>
-            </div>
-
+            <a href="https://github.com" target="_blank" class="social-link github">
+                <i class="fa-brands fa-github"></i>
+                گیت‌هاب
+            </a>
         </div>
     </div>
-</div>
 
-<script>
-    document.getElementById('rememberSwitch').addEventListener('click', function () {
-        this.classList.toggle('on');
-    });
+    <script>
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-    const scene = document.getElementById('flipScene');
-    document.getElementById('toSignup').addEventListener('click', function () {
-        scene.classList.add('flipped');
-    });
-    document.getElementById('toLogin').addEventListener('click', function () {
-        scene.classList.remove('flipped');
-    });
-</script>
+        const particles = [];
+        for (let i = 0; i < 30; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 2 + 0.8,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4,
+                alpha: Math.random() * 0.6 + 0.2
+            });
+        }
 
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 0, 85, ${p.alpha})`;
+                ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
 </body>
 </html>
