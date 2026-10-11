@@ -1,738 +1,715 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="dark">
+<html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMIRALI ZARE | Ultra Bio Experience</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        cyber: {
-                            bg: '#020408',
-                            card: '#080d1a',
-                            cyan: '#00f3ff',
-                            purple: '#b026ff',
-                            pink: '#ff007f',
-                            gold: '#ffd700',
-                            emerald: '#00ff88',
-                            telegram: '#0088cc',
-                            instagram: '#f09433'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Vazirmatn', 'Inter', 'sans-serif'],
-                        tech: ['Orbitron', 'Rajdhani', 'JetBrains Mono', 'monospace']
-                    },
-                    animation: {
-                        'spin-slow': 'spin 14s linear infinite',
-                        'spin-reverse': 'spin-reverse 18s linear infinite',
-                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite alternate',
-                        'float': 'float 5s ease-in-out infinite',
-                        'shimmer': 'shimmer 2.5s infinite linear',
-                        'halo-pulse': 'haloPulse 2s ease-in-out infinite alternate'
-                    },
-                    keyframes: {
-                        'spin-reverse': {
-                            '0%': { transform: 'rotate(0deg)' },
-                            '100%': { transform: 'rotate(-360deg)' }
-                        },
-                        pulseGlow: {
-                            '0%': { opacity: '0.25', transform: 'scale(0.96)' },
-                            '100%': { opacity: '0.8', transform: 'scale(1.04)' }
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' }
-                        },
-                        shimmer: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(100%)' }
-                        },
-                        haloPulse: {
-                            '0%': { boxShadow: '0 0 15px var(--glow-color), inset 0 0 10px var(--glow-color)' },
-                            '100%': { boxShadow: '0 0 35px var(--glow-color), inset 0 0 20px var(--glow-color)' }
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMIRALI ZARE | Personal Cyber Bio</title>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts: Vazirmatn & Orbitron -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Vazirmatn:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Google Fonts & Font Awesome 6 Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;700&family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --bg-dark: #070913;
+      --accent-cyan: #00f3ff;
+      --accent-blue: #0066ff;
+      --accent-purple: #8a2be2;
+      --text-main: #ffffff;
+      --text-muted: #8e9bb0;
+      --glass-bg: rgba(13, 17, 33, 0.65);
+      --glass-border: rgba(0, 243, 255, 0.2);
+      --glass-hover: rgba(0, 243, 255, 0.35);
+      --neon-glow: 0 0 25px rgba(0, 243, 255, 0.4);
+    }
 
-    <style>
-        :root {
-            --neon-primary: #00f3ff;
-            --neon-secondary: #b026ff;
-            --neon-glow: rgba(0, 243, 255, 0.4);
-            --glow-color: rgba(0, 243, 255, 0.5);
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
 
-        .theme-purple {
-            --neon-primary: #b026ff;
-            --neon-secondary: #ff007f;
-            --neon-glow: rgba(176, 38, 255, 0.45);
-            --glow-color: rgba(176, 38, 255, 0.5);
-        }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Vazirmatn', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      padding: 20px;
+      position: relative;
+    }
 
-        .theme-gold {
-            --neon-primary: #ffd700;
-            --neon-secondary: #ff4500;
-            --neon-glow: rgba(255, 215, 0, 0.45);
-            --glow-color: rgba(255, 215, 0, 0.5);
-        }
+    /* Background Canvas */
+    #particleCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+    }
 
-        .theme-emerald {
-            --neon-primary: #00ff88;
-            --neon-secondary: #00f3ff;
-            --neon-glow: rgba(0, 255, 136, 0.45);
-            --glow-color: rgba(0, 255, 136, 0.5);
-        }
+    /* Main Container */
+    .bio-card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 440px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 28px;
+      padding: 28px 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
 
-        body {
-            background-color: #020408;
-            color: #f8fafc;
-            font-family: 'Vazirmatn', 'Inter', sans-serif;
-            overflow-x: hidden;
-            user-select: none;
-        }
+    .bio-card:hover {
+      box-shadow: 0 25px 60px rgba(0, 243, 255, 0.15),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    }
 
-        /* Perspective Tilt Stage */
-        .stage-3d {
-            perspective: 1200px;
-        }
+    /* Header Bar */
+    .top-header-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      direction: ltr;
+    }
 
-        /* High-End Holographic Glass Card Container */
-        .ultra-glass {
-            background: linear-gradient(135deg, rgba(13, 20, 38, 0.75) 0%, rgba(6, 10, 22, 0.85) 100%);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 40px 80px -15px rgba(0, 0, 0, 0.9),
-                        0 0 40px var(--neon-glow),
-                        inset 0 1px 1px rgba(255, 255, 255, 0.2);
-        }
+    .developer-tag {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      color: var(--accent-cyan);
+      background: rgba(0, 243, 255, 0.08);
+      border: 1px solid rgba(0, 243, 255, 0.25);
+      padding: 5px 12px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+    }
 
-        /* Dynamic Grid Cyber Background Pattern */
-        .cyber-grid {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        }
+    .developer-tag i {
+      font-size: 10px;
+    }
 
-        /* 3D Glass Social Icon Tile */
-        .glass-tile {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+    .location-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 5px 12px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-        .glass-tile::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -150%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-            transform: skewX(-20deg);
-            transition: left 0.75s ease;
-        }
+    .location-tag i {
+      color: #ff3b30;
+      font-size: 12px;
+    }
 
-        .glass-tile:hover::after {
-            left: 150%;
-        }
+    /* Profile Avatar & Info */
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
 
-        /* Custom Social Halos */
-        .tile-telegram {
-            --tile-color: #0088cc;
-            --tile-glow: rgba(0, 136, 204, 0.7);
-        }
-        .tile-telegram:hover {
-            border-color: #0088cc;
-            box-shadow: 0 0 30px var(--tile-glow), inset 0 0 15px var(--tile-glow);
-            transform: translateY(-8px) scale(1.06) rotateX(10deg);
-        }
+    .avatar-wrapper {
+      position: relative;
+      width: 105px;
+      height: 105px;
+      margin-bottom: 4px;
+    }
 
-        .tile-instagram {
-            --tile-color: #f09433;
-            --tile-glow: rgba(225, 48, 108, 0.75);
-        }
-        .tile-instagram:hover {
-            border-color: #e1306c;
-            background: linear-gradient(135deg, rgba(225, 48, 108, 0.2) 0%, rgba(240, 148, 51, 0.1) 100%);
-            box-shadow: 0 0 30px var(--tile-glow), inset 0 0 15px var(--tile-glow);
-            transform: translateY(-8px) scale(1.06) rotateX(10deg);
-        }
+    .avatar-ring {
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      animation: rotateRing 6s linear infinite;
+      opacity: 0.85;
+      filter: blur(2px);
+    }
 
-        .tile-github {
-            --tile-color: #ffffff;
-            --tile-glow: rgba(255, 255, 255, 0.5);
-        }
-        .tile-github:hover {
-            border-color: #ffffff;
-            box-shadow: 0 0 30px var(--tile-glow), inset 0 0 15px var(--tile-glow);
-            transform: translateY(-8px) scale(1.06) rotateX(10deg);
-        }
+    @keyframes rotateRing {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-        .tile-share {
-            --tile-color: var(--neon-primary);
-            --tile-glow: var(--neon-glow);
-        }
-        .tile-share:hover {
-            border-color: var(--neon-primary);
-            box-shadow: 0 0 30px var(--neon-glow), inset 0 0 15px var(--neon-glow);
-            transform: translateY(-8px) scale(1.06) rotateX(10deg);
-        }
+    .avatar-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #0d1121;
+      background: #1a1f36;
+      z-index: 2;
+    }
 
-        /* Animated Music Equalizer Visualizer */
-        .v-bar {
-            width: 3.5px;
-            background: var(--neon-primary);
-            border-radius: 4px;
-            height: 4px;
-            transition: height 0.2s ease, background-color 0.3s;
-        }
+    .profile-name {
+      font-family: 'Orbitron', 'Vazirmatn', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      direction: ltr;
+    }
 
-        .playing .v-bar {
-            animation: visualizer 0.7s ease-in-out infinite alternate;
-        }
+    .verified-badge {
+      color: #0095f6;
+      font-size: 17px;
+      filter: drop-shadow(0 0 6px rgba(0, 149, 246, 0.6));
+    }
 
-        .playing .v-bar:nth-child(1) { animation-delay: 0.1s; }
-        .playing .v-bar:nth-child(2) { animation-delay: 0.3s; }
-        .playing .v-bar:nth-child(3) { animation-delay: 0.5s; }
-        .playing .v-bar:nth-child(4) { animation-delay: 0.2s; }
-        .playing .v-bar:nth-child(5) { animation-delay: 0.4s; }
+    /* Status Bar */
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 11px;
+      color: var(--text-muted);
+      direction: ltr;
+    }
 
-        @keyframes visualizer {
-            0% { height: 4px; }
-            100% { height: 24px; }
-        }
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #34c759;
+      font-weight: 600;
+    }
 
-        /* Mouse Reactive Cursor Spotlight */
-        #cursorGlow {
-            position: fixed;
-            width: 550px;
-            height: 550px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--neon-glow) 0%, transparent 65%);
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            transition: background 0.5s ease;
-        }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background-color: #34c759;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #34c759;
+      animation: pulseDot 1.8s infinite;
+    }
 
-        .tech-font {
-            font-family: 'Orbitron', 'Rajdhani', sans-serif;
-            letter-spacing: 0.08em;
-        }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+    }
 
-        /* Metallic Hologram Text Gradient */
-        .holo-text {
-            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 40%, var(--neon-primary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-        }
+    .divider-dot {
+      width: 3px;
+      height: 3px;
+      background-color: var(--text-muted);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #020408; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-    </style>
+    /* Social Icons Section */
+    .social-icons-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+      margin: 4px 0;
+    }
+
+    .social-tile {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #fff;
+      font-size: 22px;
+      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+    }
+
+    .social-tile::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 18px;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      z-index: -1;
+    }
+
+    /* Hover States for Social Tile */
+    .social-tile.telegram:hover {
+      border-color: #0088cc;
+      box-shadow: 0 0 20px rgba(0, 136, 204, 0.5);
+      color: #229ed9;
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .social-tile.instagram:hover {
+      border-color: #e1306c;
+      box-shadow: 0 0 20px rgba(225, 48, 108, 0.5);
+      color: #f09433;
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    .social-tile.github:hover {
+      border-color: #ffffff;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      transform: translateY(-5px) scale(1.05);
+    }
+
+    /* Tech Stack Pills */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .tech-pill {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      padding: 5px 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      color: var(--text-muted);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tech-pill:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(0, 243, 255, 0.05);
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    }
+
+    /* Audio Player Widget */
+    .audio-widget {
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      direction: ltr;
+    }
+
+    .play-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      border: none;
+      color: #070913;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+      flex-shrink: 0;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 18px rgba(0, 243, 255, 0.7);
+    }
+
+    .audio-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex-grow: 1;
+      overflow: hidden;
+    }
+
+    .track-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .track-artist {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    /* Visualizer Animation */
+    .visualizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 16px;
+    }
+
+    .bar {
+      width: 3px;
+      background: var(--accent-cyan);
+      border-radius: 2px;
+      height: 3px;
+      transition: height 0.2s ease;
+    }
+
+    .playing .bar {
+      animation: bounce 1s infinite ease-in-out alternate;
+    }
+
+    .playing .bar:nth-child(1) { animation-delay: 0.1s; }
+    .playing .bar:nth-child(2) { animation-delay: 0.3s; }
+    .playing .bar:nth-child(3) { animation-delay: 0.2s; }
+    .playing .bar:nth-child(4) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0% { height: 3px; }
+      100% { height: 16px; }
+    }
+
+    /* Telegram Modal Overlay */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 7, 15, 0.8);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .telegram-modal {
+      background: #0f1428;
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 28px;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .telegram-modal {
+      transform: translateY(0);
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .close-modal:hover {
+      color: #fff;
+    }
+
+    .modal-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 136, 204, 0.12);
+      border: 1px solid rgba(0, 136, 204, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: #229ed9;
+      font-size: 26px;
+    }
+
+    .modal-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .modal-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .modal-btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(135deg, #0088cc, #005588);
+      color: #fff;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
+    }
+
+    .modal-btn:hover {
+      opacity: 0.95;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-3 sm:p-6 relative transition-colors duration-500 overflow-x-hidden">
+<body>
 
-    <!-- Interactive Mouse Spotlight -->
-    <div id="cursorGlow"></div>
+  <!-- Particle Background Canvas -->
+  <canvas id="particleCanvas"></canvas>
 
-    <!-- Cyber Background Grid with Canvas Particles -->
-    <div class="fixed inset-0 cyber-grid opacity-40 pointer-events-none z-0"></div>
-    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
-
-    <!-- Glowing Ambient Lights -->
-    <div class="fixed top-1/4 left-1/4 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow z-0"></div>
-    <div class="fixed bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[140px] pointer-events-none animate-pulse-glow z-0" style="animation-delay: 1.5s;"></div>
-
-    <div class="stage-3d w-full max-w-md relative z-30 my-6">
-        <main id="mainCard" class="w-full ultra-glass rounded-3xl p-6 sm:p-8 relative transition-all duration-700 opacity-0 scale-95 shadow-2xl">
-            
-            <!-- Header Toolbar: Live Status, Location, Theme Switcher -->
-            <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-800/80">
-                <!-- Location & Pulse Badge -->
-                <a href="https://maps.google.com/?q=Tabriz,Iran" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-700/80 hover:border-[var(--neon-primary)] text-xs text-slate-300 transition-all duration-300 group shadow-lg">
-                    <span class="relative flex h-2.5 w-2.5">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-                    </span>
-                    <i class="fa-solid fa-location-dot text-[var(--neon-primary)] group-hover:scale-125 transition-transform"></i>
-                    <span class="font-medium tracking-wide">Tabriz, Iran 📍</span>
-                </a>
-
-                <!-- Futuristic Cyber Theme Picker -->
-                <div class="flex items-center gap-1.5 bg-slate-950/90 p-1.5 rounded-full border border-slate-800 shadow-inner">
-                    <button onclick="setTheme('cyan')" class="w-4 h-4 rounded-full bg-cyan-400 hover:scale-125 transition-transform shadow-[0_0_8px_#00f3ff]" title="Cyan Neon"></button>
-                    <button onclick="setTheme('purple')" class="w-4 h-4 rounded-full bg-purple-500 hover:scale-125 transition-transform shadow-[0_0_8px_#b026ff]" title="Purple Synth"></button>
-                    <button onclick="setTheme('gold')" class="w-4 h-4 rounded-full bg-amber-400 hover:scale-125 transition-transform shadow-[0_0_8px_#ffd700]" title="Cyber Gold"></button>
-                    <button onclick="setTheme('emerald')" class="w-4 h-4 rounded-full bg-emerald-400 hover:scale-125 transition-transform shadow-[0_0_8px_#00ff88]" title="Emerald Matrix"></button>
-                </div>
-            </div>
-
-            <!-- Profile Avatar Section -->
-            <div class="flex flex-col items-center text-center mb-7">
-                <div class="relative mb-5 group cursor-pointer" onclick="pulseAvatar()">
-                    <!-- Glowing Holographic Rings -->
-                    <div class="absolute -inset-3.5 rounded-full border-2 border-dashed border-[var(--neon-primary)] opacity-60 animate-spin-slow"></div>
-                    <div class="absolute -inset-5 rounded-full border border-dotted border-[var(--neon-secondary)] opacity-40 animate-spin-reverse"></div>
-                    <div class="absolute -inset-2 bg-gradient-to-r from-cyan-500 via-purple-600 to-amber-400 rounded-full blur-lg opacity-70 group-hover:opacity-100 transition duration-500"></div>
-                    
-                    <!-- Avatar Image Container -->
-                    <div class="relative w-32 h-32 sm:w-36 sm:h-36 rounded-full p-1 bg-slate-950 overflow-hidden border-2 border-white/30 shadow-2xl">
-                        <img 
-                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400" 
-                            alt="AMIRALI ZARE" 
-                            class="w-full h-full object-cover rounded-full filter contrast-105 group-hover:scale-110 transition-transform duration-500"
-                            onerror="this.src='https://placehold.co/300x300/080d1a/00f3ff?text=AZ'"
-                        >
-                    </div>
-
-                    <!-- Verified Hologram Badge -->
-                    <div class="absolute bottom-1 right-1 w-7 h-7 bg-slate-950 border-2 border-[var(--neon-primary)] rounded-full flex items-center justify-center shadow-xl" title="تایید شده">
-                        <i class="fa-solid fa-check text-xs text-[var(--neon-primary)]"></i>
-                    </div>
-                </div>
-
-                <!-- User Name -->
-                <div class="flex items-center justify-center gap-2 mb-1.5">
-                    <h1 class="tech-font text-2xl sm:text-3xl font-black tracking-widest holo-text uppercase">
-                        AMIRALI ZARE
-                    </h1>
-                    <i class="fa-solid fa-circle-check text-[var(--neon-primary)] text-xl drop-shadow-[0_0_10px_var(--neon-primary)]"></i>
-                </div>
-
-                <!-- Typewriter Subtitle -->
-                <div class="h-6 flex items-center justify-center font-mono text-xs sm:text-sm text-slate-300 font-light">
-                    <span id="typingText" class="border-r-2 border-[var(--neon-primary)] pr-1"></span>
-                </div>
-
-                <!-- Cyber Badges -->
-                <div class="flex flex-wrap justify-center gap-2 mt-4 text-[11px] font-mono text-slate-300">
-                    <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-800 hover:border-[var(--neon-primary)] transition-colors shadow-sm">Digital Creator</span>
-                    <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-800 hover:border-[var(--neon-primary)] transition-colors shadow-sm">Front-End Developer</span>
-                    <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-800 hover:border-[var(--neon-primary)] transition-colors shadow-sm">UI/UX Enthusiast</span>
-                </div>
-            </div>
-
-            <!-- Built-in Lo-Fi Cyber Music Player -->
-            <div class="mb-7 p-4 rounded-2xl bg-slate-950/80 border border-slate-800 hover:border-slate-700 transition-colors shadow-2xl relative overflow-hidden group">
-                <div class="flex items-center justify-between gap-3 mb-3">
-                    <div class="flex items-center gap-3 overflow-hidden">
-                        <!-- Vinyl Record Disc -->
-                        <div id="musicDisc" class="w-11 h-11 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-slate-950 flex-shrink-0 shadow-lg border-2 border-slate-900">
-                            <i class="fa-solid fa-compact-disc text-2xl"></i>
-                        </div>
-                        <div class="overflow-hidden text-right">
-                            <div class="text-xs font-bold text-slate-100 truncate tracking-wide">Cyber Synth Lo-Fi</div>
-                            <div class="text-[10px] text-slate-400 truncate">Ambient Chill Beats</div>
-                        </div>
-                    </div>
-
-                    <!-- Play Toggle Button -->
-                    <button onclick="toggleAudio()" class="w-10 h-10 rounded-xl bg-[var(--neon-primary)] text-slate-950 flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-[0_0_15px_var(--neon-glow)] font-bold">
-                        <i id="playBtnIcon" class="fa-solid fa-play text-sm"></i>
-                    </button>
-                </div>
-
-                <!-- Progress Track Bar -->
-                <div class="space-y-2">
-                    <div class="w-full bg-slate-800/80 h-1.5 rounded-full overflow-hidden cursor-pointer" onclick="seekAudio(event)">
-                        <div id="progressBar" class="bg-[var(--neon-primary)] h-full w-0 transition-all duration-150 shadow-[0_0_10px_var(--neon-primary)]"></div>
-                    </div>
-
-                    <div class="flex items-center justify-between text-[10px] text-slate-400 font-mono">
-                        <span id="currentTime">0:00</span>
-                        
-                        <!-- Visualizer Bars -->
-                        <div id="visualizer" class="flex items-center gap-1 h-5">
-                            <div class="v-bar"></div>
-                            <div class="v-bar"></div>
-                            <div class="v-bar"></div>
-                            <div class="v-bar"></div>
-                            <div class="v-bar"></div>
-                        </div>
-
-                        <!-- Volume Slider -->
-                        <div class="flex items-center gap-1.5">
-                            <i id="volumeIcon" class="fa-solid fa-volume-high text-[10px]"></i>
-                            <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.7" oninput="changeVolume(this.value)" class="w-14 h-1 bg-slate-800 rounded-lg cursor-pointer accent-[var(--neon-primary)]">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Social Media Icon Grid: Glassmorphism & Neon Halos (NO TEXT) -->
-            <div class="mb-7">
-                <div class="grid grid-cols-4 gap-3.5 sm:gap-4">
-                    
-                    <!-- Telegram Tile -->
-                    <div class="relative group">
-                        <button onclick="openTelegramModal()" class="glass-tile tile-telegram w-full aspect-square rounded-2xl flex items-center justify-center text-2xl text-sky-400">
-                            <i class="fa-brands fa-telegram drop-shadow-[0_0_12px_rgba(0,136,204,0.9)] group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300"></i>
-                        </button>
-                        <!-- Floating Glass Reflective Dot -->
-                        <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-sky-400/60 blur-[1px]"></div>
-                        <!-- Tooltip -->
-                        <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-slate-950/90 text-[10px] font-mono text-sky-300 border border-sky-500/30 opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap shadow-xl">
-                            Telegram
-                        </span>
-                    </div>
-
-                    <!-- Instagram Tile -->
-                    <div class="relative group">
-                        <a href="https://instagram.com" target="_blank" rel="noopener" class="glass-tile tile-instagram w-full aspect-square rounded-2xl flex items-center justify-center text-2xl text-rose-400">
-                            <i class="fa-brands fa-instagram drop-shadow-[0_0_12px_rgba(225,48,108,0.9)] group-hover:scale-125 group-hover:rotate-12 transition-transform duration-300"></i>
-                        </a>
-                        <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-rose-400/60 blur-[1px]"></div>
-                        <!-- Tooltip -->
-                        <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-slate-950/90 text-[10px] font-mono text-rose-300 border border-rose-500/30 opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap shadow-xl">
-                            Instagram
-                        </span>
-                    </div>
-
-                    <!-- GitHub Tile -->
-                    <div class="relative group">
-                        <a href="https://github.com" target="_blank" rel="noopener" class="glass-tile tile-github w-full aspect-square rounded-2xl flex items-center justify-center text-2xl text-slate-100">
-                            <i class="fa-brands fa-github drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] group-hover:scale-125 group-hover:-rotate-12 transition-transform duration-300"></i>
-                        </a>
-                        <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-white/60 blur-[1px]"></div>
-                        <!-- Tooltip -->
-                        <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-slate-950/90 text-[10px] font-mono text-slate-200 border border-slate-700 opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap shadow-xl">
-                            GitHub
-                        </span>
-                    </div>
-
-                    <!-- Share Profile Tile -->
-                    <div class="relative group">
-                        <button onclick="copyProfileLink()" class="glass-tile tile-share w-full aspect-square rounded-2xl flex items-center justify-center text-xl text-[var(--neon-primary)]">
-                            <i class="fa-solid fa-share-nodes drop-shadow-[0_0_12px_var(--neon-primary)] group-hover:scale-125 transition-transform duration-300"></i>
-                        </button>
-                        <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-[var(--neon-primary)]/60 blur-[1px]"></div>
-                        <!-- Tooltip -->
-                        <span class="absolute -top-9 left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg bg-slate-950/90 text-[10px] font-mono text-cyan-300 border border-cyan-500/30 opacity-0 group-hover:opacity-100 transition-all pointer-events-none whitespace-nowrap shadow-xl">
-                            اشتراک‌گذاری
-                        </span>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Footer Signature -->
-            <footer class="text-center border-t border-slate-800/80 pt-4 text-[11px] text-slate-400 font-mono flex items-center justify-between">
-                <span>© 2026 AMIRALI ZARE</span>
-                <span class="inline-flex items-center gap-1 text-[var(--neon-primary)]">
-                    <i class="fa-solid fa-bolt text-[10px]"></i> Cyber Bio
-                </span>
-            </footer>
-
-        </main>
+  <!-- Main Bio Card -->
+  <div class="bio-card" id="bioCard">
+    
+    <!-- Top Header Bar -->
+    <div class="top-header-bar">
+      <div class="developer-tag">
+        <i class="fa-solid fa-code"></i> Developer
+      </div>
+      <div class="location-tag">
+        تبریز <i class="fa-solid fa-location-dot"></i>
+      </div>
     </div>
 
-    <!-- Telegram Direct Message Modal Dialog -->
-    <div id="telegramModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-        <div class="w-full max-w-sm rounded-3xl bg-slate-950 border border-sky-500/40 p-6 shadow-[0_0_50px_rgba(0,136,204,0.3)] relative transform scale-90 transition-all duration-300" id="telegramModalCard">
-            <!-- Modal Header -->
-            <div class="flex justify-between items-center mb-4 pb-3 border-b border-slate-800">
-                <div class="flex items-center gap-2 text-sky-400 font-bold text-sm">
-                    <i class="fa-brands fa-telegram text-xl"></i>
-                    <span>ارسال پیام مستقیم به تلگرام</span>
-                </div>
-                <button onclick="closeTelegramModal()" class="w-8 h-8 rounded-full bg-slate-900 text-slate-400 hover:text-white flex items-center justify-center transition-colors">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
+    <!-- Profile Avatar & Title -->
+    <div class="profile-section">
+      <div class="avatar-wrapper">
+        <div class="avatar-ring"></div>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="AMIRALI ZARE" class="avatar-img">
+      </div>
+      
+      <div class="profile-name">
+        AMIRALI ZARE <i class="fa-solid fa-circle-check verified-badge"></i>
+      </div>
 
-            <!-- Quick Text Pre-fill Options -->
-            <p class="text-xs text-slate-300 mb-3">یک پیام آماده انتخاب کنید یا متن خود را بنویسید:</p>
-            <div class="space-y-2 mb-4">
-                <button onclick="setMsg('سلام امیرعلی عزیز، تمایل به همکاری دارم.')" class="w-full text-right p-2.5 rounded-xl bg-slate-900 hover:bg-sky-950/60 border border-slate-800 hover:border-sky-500/40 text-xs text-slate-300 transition-colors">
-                    💬 سلام امیرعلی عزیز، تمایل به همکاری دارم.
-                </button>
-                <button onclick="setMsg('سلام، وقت بخیر. پروژه‌ای دارم که می‌خواهم مطرح کنم.')" class="w-full text-right p-2.5 rounded-xl bg-slate-900 hover:bg-sky-950/60 border border-slate-800 hover:border-sky-500/40 text-xs text-slate-300 transition-colors">
-                    💼 سلام، وقت بخیر. پروژه‌ای دارم که می‌خواهم مطرح کنم.
-                </button>
-            </div>
-
-            <!-- Custom Message Textarea -->
-            <textarea id="tgMessageText" rows="3" class="w-full p-3 rounded-xl bg-slate-900 border border-slate-800 focus:border-sky-500 text-xs text-slate-200 outline-none resize-none mb-4" placeholder="متن پیام شما..."></textarea>
-
-            <!-- Send Action Button -->
-            <button onclick="sendTelegramMsg()" class="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(0,136,204,0.5)]">
-                <i class="fa-solid fa-paper-plane"></i>
-                <span>ارسال پیام در تلگرام</span>
-            </button>
+      <!-- Live Status & Clock -->
+      <div class="status-bar">
+        <div class="status-indicator">
+          <span class="status-dot"></span> Online
         </div>
+        <span class="divider-dot"></span>
+        <div id="liveClock">--:--:--</div>
+      </div>
     </div>
 
-    <!-- Notification Toast Box -->
-    <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-2.5 rounded-full bg-slate-900/90 border border-[var(--neon-primary)] text-xs text-slate-200 flex items-center gap-2 shadow-[0_0_20px_var(--neon-glow)] opacity-0 pointer-events-none transition-all duration-300">
-        <i class="fa-solid fa-circle-check text-[var(--neon-primary)]"></i>
-        <span id="toastMsg">لینک با موفقیت کپی شد!</span>
+    <!-- Social Icons Grid (Pure Icons & Glass Glow) -->
+    <div class="social-icons-grid">
+      <div class="social-tile telegram" onclick="openTelegramModal()" title="تلگرام">
+        <i class="fa-brands fa-telegram"></i>
+      </div>
+      <a href="https://instagram.com" target="_blank" class="social-tile instagram" title="اینستاگرام">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="https://github.com" target="_blank" class="social-tile github" title="گیت‌هاب">
+        <i class="fa-brands fa-github"></i>
+      </a>
     </div>
 
-    <!-- Background Audio Element (Lo-Fi Track) -->
-    <audio id="bgAudio" loop preload="none">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-    </audio>
+    <!-- Tech Stack Skills -->
+    <div class="tech-stack">
+      <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML5</span>
+      <span class="tech-pill"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+      <span class="tech-pill"><i class="fa-brands fa-js"></i> JavaScript</span>
+      <span class="tech-pill"><i class="fa-brands fa-python"></i> Python</span>
+      <span class="tech-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
+    </div>
 
-    <!-- JavaScript Logic & Interactivity -->
-    <script>
-        // Reveal animation on load
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                const mainCard = document.getElementById('mainCard');
-                mainCard.classList.remove('opacity-0', 'scale-95');
-                mainCard.classList.add('opacity-100', 'scale-100');
-            }, 100);
-            initTypewriter();
-            initParticles();
-            init3DTilt();
-        });
+    <!-- Cyber Audio Widget -->
+    <div class="audio-widget">
+      <button class="play-btn" id="playAudioBtn" onclick="toggleAudio()">
+        <i class="fa-solid fa-play" id="playIcon"></i>
+      </button>
+      <div class="audio-info">
+        <div class="track-title">Cyberpunk Ambient Synth</div>
+        <div class="track-artist">Background Track</div>
+      </div>
+      <div class="visualizer" id="visualizer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
 
-        // Mouse Spotlight Glow Follow
-        const cursorGlow = document.getElementById('cursorGlow');
-        window.addEventListener('mousemove', (e) => {
-            cursorGlow.style.left = `${e.clientX}px`;
-            cursorGlow.style.top = `${e.clientY}px`;
-        });
+  </div>
 
-        // Dynamic 3D Card Tilt Effect
-        function init3DTilt() {
-            const card = document.getElementById('mainCard');
-            window.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                if (e.clientX > rect.left - 50 && e.clientX < rect.right + 50 &&
-                    e.clientY > rect.top - 50 && e.clientY < rect.bottom + 50) {
-                    const tiltX = (y / rect.height) * -8;
-                    const tiltY = (x / rect.width) * 8;
-                    card.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.01)`;
-                } else {
-                    card.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
-                }
-            });
+  <!-- Telegram Contact Modal -->
+  <div class="modal-overlay" id="tgModalOverlay">
+    <div class="telegram-modal">
+      <i class="fa-solid fa-xmark close-modal" onclick="closeTelegramModal()"></i>
+      <div class="modal-icon">
+        <i class="fa-brands fa-telegram"></i>
+      </div>
+      <div class="modal-title">ارسال پیام در تلگرام</div>
+      <div class="modal-sub">برای گفتگو مستقیم کلیک کنید</div>
+      <a href="https://t.me" target="_blank" class="modal-btn">
+        باز کردن تلگرام <i class="fa-solid fa-arrow-left"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73185.mp3?filename=cyberpunk-2099-10701.mp3"></audio>
+
+  <script>
+    // Live Tabriz Time
+    function updateClock() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Tehran', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-US', options) + ' (تبریز)';
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Audio Player Toggle
+    const audio = document.getElementById('bgAudio');
+    const playIcon = document.getElementById('playIcon');
+    const visualizer = document.getElementById('visualizer');
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        playIcon.className = 'fa-solid fa-pause';
+        visualizer.classList.add('playing');
+      } else {
+        audio.pause();
+        playIcon.className = 'fa-solid fa-play';
+        visualizer.classList.remove('playing');
+      }
+    }
+
+    // Telegram Modal Handlers
+    function openTelegramModal() {
+      document.getElementById('tgModalOverlay').classList.add('active');
+    }
+    function closeTelegramModal() {
+      document.getElementById('tgModalOverlay').classList.remove('active');
+    }
+
+    // Canvas Background Animation
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    const particleCount = 45;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.4;
+        this.speedY = (Math.random() - 0.5) * 0.4;
+        this.opacity = Math.random() * 0.5 + 0.2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
         }
+      }
+      draw() {
+        ctx.fillStyle = `rgba(0, 243, 255, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
 
-        // Typewriter Effect
-        const phrases = ["سیستم در حال اجرا است...", "طراح و توسعه‌دهنده وب", "Cyberpunk Bio Interface", "خوش آمدید به پروفایل من"];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingElement = document.getElementById('typingText');
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
 
-        function initTypewriter() {
-            const currentPhrase = phrases[phraseIndex];
-            if (isDeleting) {
-                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let speed = isDeleting ? 40 : 80;
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                speed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                speed = 400;
-            }
-
-            setTimeout(initTypewriter, speed);
-        }
-
-        // Cyber Theme Accent Picker
-        function setTheme(theme) {
-            document.body.className = "min-h-screen flex items-center justify-center p-3 sm:p-6 relative transition-colors duration-500 overflow-x-hidden";
-            if (theme !== 'cyan') {
-                document.body.classList.add(`theme-${theme}`);
-            }
-            showToast(`تم تغییر یافت به: ${theme.toUpperCase()}`);
-        }
-
-        // Avatar Pulse Animation
-        function pulseAvatar() {
-            showToast("AMIRALI ZARE | Verified Profile ⚡");
-        }
-
-        // Audio Player System
-        const bgAudio = document.getElementById('bgAudio');
-        const playBtnIcon = document.getElementById('playBtnIcon');
-        const visualizer = document.getElementById('visualizer');
-        const musicDisc = document.getElementById('musicDisc');
-        const progressBar = document.getElementById('progressBar');
-        const currentTimeEl = document.getElementById('currentTime');
-        let isPlaying = false;
-
-        function toggleAudio() {
-            if (isPlaying) {
-                bgAudio.pause();
-                playBtnIcon.className = 'fa-solid fa-play text-sm';
-                visualizer.classList.remove('playing');
-                musicDisc.classList.remove('animate-spin-slow');
-                isPlaying = false;
-            } else {
-                bgAudio.play().then(() => {
-                    playBtnIcon.className = 'fa-solid fa-pause text-sm';
-                    visualizer.classList.add('playing');
-                    musicDisc.classList.add('animate-spin-slow');
-                    isPlaying = true;
-                }).catch(() => {
-                    showToast("خطا در پخش موزیک. لطفاً دوباره کلیک کنید.");
-                });
-            }
-        }
-
-        bgAudio.addEventListener('timeupdate', () => {
-            if (bgAudio.duration) {
-                const pct = (bgAudio.currentTime / bgAudio.duration) * 100;
-                progressBar.style.width = `${pct}%`;
-                
-                const mins = Math.floor(bgAudio.currentTime / 60);
-                const secs = Math.floor(bgAudio.currentTime % 60);
-                currentTimeEl.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-            }
-        });
-
-        function seekAudio(e) {
-            const rect = e.currentTarget.getBoundingClientRect();
-            const pos = (e.clientX - rect.left) / rect.width;
-            if (bgAudio.duration) {
-                bgAudio.currentTime = pos * bgAudio.duration;
-            }
-        }
-
-        function changeVolume(val) {
-            bgAudio.volume = val;
-        }
-
-        // Telegram Quick Message Modal
-        function openTelegramModal() {
-            const modal = document.getElementById('telegramModal');
-            const modalCard = document.getElementById('telegramModalCard');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            modalCard.classList.remove('scale-90');
-            modalCard.classList.add('scale-100');
-        }
-
-        function closeTelegramModal() {
-            const modal = document.getElementById('telegramModal');
-            const modalCard = document.getElementById('telegramModalCard');
-            modalCard.classList.remove('scale-100');
-            modalCard.classList.add('scale-90');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-        }
-
-        function setMsg(txt) {
-            document.getElementById('tgMessageText').value = txt;
-        }
-
-        function sendTelegramMsg() {
-            const txt = document.getElementById('tgMessageText').value;
-            const tgUsername = "AmiraliZare"; // Replace with real Telegram handle
-            const url = `https://t.me/${tgUsername}?text=${encodeURIComponent(txt || 'سلام امیرعلی عزیز')}`;
-            window.open(url, '_blank');
-            closeTelegramModal();
-        }
-
-        // Copy Profile Share Link
-        function copyProfileLink() {
-            const textToCopy = window.location.href;
-            const tempInput = document.createElement("input");
-            tempInput.value = textToCopy;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            showToast("لینک پروفایل کپی شد!");
-        }
-
-        // Toast Notification System
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').textContent = msg;
-            toast.classList.remove('opacity-0', 'pointer-events-none');
-            setTimeout(() => {
-                toast.classList.add('opacity-0', 'pointer-events-none');
-            }, 3000);
-        }
-
-        // Background Particle Canvas
-        function initParticles() {
-            const canvas = document.getElementById('particleCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            function resize() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            }
-            resize();
-            window.addEventListener('resize', resize);
-
-            const particles = [];
-            const count = Math.min(window.innerWidth / 20, 50);
-
-            for (let i = 0; i < count; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    radius: Math.random() * 1.5 + 0.5,
-                    vx: (Math.random() - 0.5) * 0.4,
-                    vy: (Math.random() - 0.5) * 0.4,
-                    alpha: Math.random() * 0.5 + 0.2
-                });
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                particles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-
-                    if (p.x < 0) p.x = canvas.width;
-                    if (p.x > canvas.width) p.x = 0;
-                    if (p.y < 0) p.y = canvas.height;
-                    if (p.y > canvas.height) p.y = 0;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(0, 243, 255, ${p.alpha})`;
-                    ctx.fill();
-                });
-
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-    </script>
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+  </script>
 </body>
 </html>
