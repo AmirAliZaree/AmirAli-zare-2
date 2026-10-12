@@ -403,19 +403,38 @@
       transform: translateY(-4px) scale(1.05);
     }
 
-    /* Rubika Custom Styled Icon (شبیه روبیکا با پالت رنگی زرد/نارنجی نئونی) */
+    /* Rubika Hexagon Cube Custom Icon (دقیقاً شبیه به لوگوی روبیکا) */
     .social-tile.rubika-tile {
-      color: #ff9900;
-      font-family: 'Orbitron', sans-serif;
-      font-weight: 900;
-      font-size: 16px;
-      letter-spacing: -1px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 153, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rubika-cube {
+      width: 24px;
+      height: 24px;
+      position: relative;
+      background: linear-gradient(135deg, #ff3b30, #ffcc00, #4cd964, #5ac8fa, #5856d6);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      box-shadow: 0 0 10px rgba(255, 153, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rubika-cube::after {
+      content: '';
+      width: 9px;
+      height: 9px;
+      background: #ffffff;
+      transform: rotate(45deg);
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
     }
     .social-tile.rubika-tile:hover {
-      background: rgba(255, 153, 0, 0.15);
+      background: rgba(255, 153, 0, 0.2);
       border-color: #ff9900;
-      box-shadow: 0 0 25px rgba(255, 153, 0, 0.7);
-      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 0 30px rgba(255, 153, 0, 0.8);
+      transform: translateY(-4px) scale(1.06);
     }
 
     /* Terminal Button */
@@ -792,7 +811,7 @@
           <i class="fa-solid fa-film"></i>
         </div>
         <a href="https://rubika.ir" target="_blank" class="social-tile rubika-tile" title="روبیکا">
-          RB
+          <div class="rubika-cube"></div>
         </a>
       </div>
 
