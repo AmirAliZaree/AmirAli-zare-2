@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMIRALI ZARE | Cyber Overlord</title>
+  <title>AMIRALI ZARE | Apex Cyber Overlord</title>
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,14 +15,14 @@
 
   <style>
     :root {
-      --bg-dark: #020307;
+      --bg-dark: #010204;
       --accent-cyan: #00f3ff;
       --accent-magenta: #ff0055;
       --accent-purple: #9d00ff;
       --text-main: #ffffff;
       --text-muted: #7b8b9e;
-      --glass-bg: rgba(6, 9, 18, 0.85);
-      --glass-border: rgba(0, 243, 255, 0.3);
+      --glass-bg: rgba(5, 8, 17, 0.88);
+      --glass-border: rgba(0, 243, 255, 0.4);
     }
 
     * {
@@ -40,7 +40,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow-x: hidden;
+      overflow: hidden;
       padding: 20px;
       position: relative;
       perspective: 1000px;
@@ -51,22 +51,64 @@
       content: "";
       position: fixed;
       inset: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), 
-                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.4) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.04));
       z-index: 5;
       background-size: 100% 4px, 6px 100%;
       pointer-events: none;
     }
 
-    /* Background Canvas */
+    /* Background Matrix Canvas */
     #matrixCanvas {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: 1;
       pointer-events: none;
+    }
+
+    /* Entry Screen Overlay (برای پخش تضمینی آهنگ) */
+    .entry-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(1, 2, 4, 0.96);
+      backdrop-filter: blur(30px);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .entry-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .entry-btn {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--accent-cyan);
+      background: rgba(0, 243, 255, 0.1);
+      border: 2px solid var(--accent-cyan);
+      padding: 16px 36px;
+      border-radius: 30px;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.4), inset 0 0 15px rgba(0, 243, 255, 0.2);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .entry-btn:hover {
+      background: var(--accent-cyan);
+      color: #010204;
+      box-shadow: 0 0 50px rgba(0, 243, 255, 0.9), inset 0 0 20px rgba(255, 255, 255, 0.5);
+      transform: scale(1.08);
     }
 
     /* Main Bio Card Container */
@@ -82,14 +124,14 @@
     .bio-card {
       position: relative;
       background: var(--glass-bg);
-      backdrop-filter: blur(30px);
-      -webkit-backdrop-filter: blur(30px);
+      backdrop-filter: blur(35px);
+      -webkit-backdrop-filter: blur(35px);
       border: 1px solid var(--glass-border);
       border-radius: 32px;
       padding: 32px 26px;
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95),
-                  0 0 50px rgba(0, 243, 255, 0.15),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.25);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.98),
+                  0 0 60px rgba(0, 243, 255, 0.2),
+                  inset 0 1px 3px rgba(255, 255, 255, 0.3);
       display: flex;
       flex-direction: column;
       gap: 22px;
@@ -104,7 +146,7 @@
       width: 100%;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent);
-      animation: scanLaser 3.5s linear infinite;
+      animation: scanLaser 3s linear infinite;
     }
 
     @keyframes scanLaser {
@@ -127,15 +169,15 @@
       font-weight: 900;
       letter-spacing: 2px;
       color: var(--accent-cyan);
-      background: rgba(0, 243, 255, 0.08);
-      border: 1px solid rgba(0, 243, 255, 0.35);
+      background: rgba(0, 243, 255, 0.1);
+      border: 1px solid rgba(0, 243, 255, 0.4);
       padding: 6px 14px;
       border-radius: 20px;
       display: flex;
       align-items: center;
       gap: 7px;
       text-transform: uppercase;
-      box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
+      box-shadow: 0 0 18px rgba(0, 243, 255, 0.3);
     }
 
     .location-tag {
@@ -154,7 +196,7 @@
     .location-tag i {
       color: #ff2a5f;
       font-size: 13px;
-      filter: drop-shadow(0 0 6px #ff2a5f);
+      filter: drop-shadow(0 0 8px #ff2a5f);
     }
 
     /* Profile Avatar & Title */
@@ -178,9 +220,9 @@
       top: -6px; left: -6px; right: -6px; bottom: -6px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta), var(--accent-purple));
-      animation: rotateRing 3.5s linear infinite;
-      opacity: 0.95;
-      filter: blur(4px);
+      animation: rotateRing 3s linear infinite;
+      opacity: 0.98;
+      filter: blur(5px);
     }
 
     @keyframes rotateRing {
@@ -194,7 +236,7 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #03050c;
+      border: 3px solid #010204;
       background: #0d1322;
       z-index: 2;
     }
@@ -213,7 +255,7 @@
       direction: ltr;
       position: relative;
       cursor: pointer;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
 
     .profile-name:hover {
@@ -221,9 +263,9 @@
     }
 
     @keyframes glitchText {
-      0% { transform: translate(0); text-shadow: -2px 0 var(--accent-magenta), 2px 0 var(--accent-cyan); }
+      0% { transform: translate(0); text-shadow: -3px 0 var(--accent-magenta), 3px 0 var(--accent-cyan); }
       25% { transform: translate(-2px, 2px); }
-      50% { transform: translate(2px, -2px); text-shadow: 2px 0 var(--accent-magenta), -2px 0 var(--accent-cyan); }
+      50% { transform: translate(2px, -2px); text-shadow: 3px 0 var(--accent-magenta), -3px 0 var(--accent-cyan); }
       75% { transform: translate(-1px, -1px); }
       100% { transform: translate(0); }
     }
@@ -239,7 +281,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.55);
       border: 1px solid rgba(255, 255, 255, 0.08);
       padding: 7px 18px;
       border-radius: 50px;
@@ -300,9 +342,9 @@
 
     .social-tile.telegram { color: #229ed9; }
     .social-tile.telegram:hover {
-      background: rgba(34, 158, 217, 0.18);
+      background: rgba(34, 158, 217, 0.2);
       border-color: #229ed9;
-      box-shadow: 0 0 35px rgba(34, 158, 217, 0.8), inset 0 0 15px rgba(34, 158, 217, 0.4);
+      box-shadow: 0 0 40px rgba(34, 158, 217, 0.9), inset 0 0 15px rgba(34, 158, 217, 0.4);
       transform: translateY(-6px) scale(1.08);
     }
 
@@ -313,17 +355,17 @@
       -webkit-text-fill-color: transparent;
     }
     .social-tile.instagram:hover {
-      background: rgba(225, 48, 108, 0.18);
+      background: rgba(225, 48, 108, 0.2);
       border-color: #e1306c;
-      box-shadow: 0 0 35px rgba(225, 48, 108, 0.8), inset 0 0 15px rgba(225, 48, 108, 0.4);
+      box-shadow: 0 0 40px rgba(225, 48, 108, 0.9), inset 0 0 15px rgba(225, 48, 108, 0.4);
       transform: translateY(-6px) scale(1.08);
     }
 
     .social-tile.github { color: #ffffff; }
     .social-tile.github:hover {
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.2);
       border-color: #ffffff;
-      box-shadow: 0 0 35px rgba(255, 255, 255, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 0.8), inset 0 0 15px rgba(255, 255, 255, 0.3);
       transform: translateY(-6px) scale(1.08);
     }
 
@@ -331,7 +373,7 @@
     .terminal-trigger-btn {
       width: 100%;
       background: rgba(0, 243, 255, 0.05);
-      border: 1px dashed rgba(0, 243, 255, 0.35);
+      border: 1px dashed rgba(0, 243, 255, 0.4);
       color: var(--accent-cyan);
       font-family: 'Orbitron', sans-serif;
       font-size: 11px;
@@ -351,7 +393,7 @@
     .terminal-trigger-btn:hover {
       background: rgba(0, 243, 255, 0.15);
       border-style: solid;
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+      box-shadow: 0 0 22px rgba(0, 243, 255, 0.4);
       transform: translateY(-2px);
     }
 
@@ -383,12 +425,12 @@
       border-color: var(--accent-cyan);
       color: var(--accent-cyan);
       background: rgba(0, 243, 255, 0.08);
-      box-shadow: 0 0 14px rgba(0, 243, 255, 0.35);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.35);
     }
 
     /* Audio Player Widget */
     .audio-widget {
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       padding: 12px 18px;
@@ -404,20 +446,20 @@
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-cyan), #0088ff);
       border: none;
-      color: #020307;
+      color: #010204;
       font-size: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 0 16px rgba(0, 243, 255, 0.5);
+      box-shadow: 0 0 18px rgba(0, 243, 255, 0.6);
       flex-shrink: 0;
     }
 
     .play-btn:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 25px rgba(0, 243, 255, 0.85);
+      box-shadow: 0 0 28px rgba(0, 243, 255, 0.9);
     }
 
     .audio-info {
@@ -472,7 +514,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(2, 3, 7, 0.88);
+      background: rgba(1, 2, 4, 0.9);
       backdrop-filter: blur(20px);
       z-index: 100;
       display: flex;
@@ -498,7 +540,7 @@
       max-width: 380px;
       text-align: center;
       position: relative;
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.98);
     }
 
     .close-modal {
@@ -514,7 +556,7 @@
 
     /* Terminal Modal */
     .terminal-modal {
-      background: #040812;
+      background: #03060f;
       border: 1px solid var(--accent-cyan);
       border-radius: 18px;
       padding: 20px;
@@ -522,7 +564,7 @@
       max-width: 480px;
       font-family: 'Share Tech Mono', monospace;
       color: var(--accent-cyan);
-      box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
+      box-shadow: 0 0 50px rgba(0, 243, 255, 0.4);
       direction: ltr;
       text-align: left;
     }
@@ -565,6 +607,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Entry Screen for Guaranteed Autoplay -->
+  <div class="entry-overlay" id="entryOverlay">
+    <div style="font-family:'Orbitron',sans-serif; color:var(--accent-cyan); font-size:13px; letter-spacing:4px; margin-bottom:10px; text-shadow:0 0 15px var(--accent-cyan);">SECURE CONNECTION READY</div>
+    <button class="entry-btn" onclick="enterSystem()">ENTER SYSTEM [▶]</button>
+  </div>
 
   <!-- Matrix Background Canvas -->
   <canvas id="matrixCanvas"></canvas>
@@ -685,7 +733,7 @@
   </div>
 
   <!-- Background Audio Element -->
-  <audio id="bgAudio" loop autoplay preload="auto" src="music.mp3"></audio>
+  <audio id="bgAudio" loop preload="auto" src="music.mp3"></audio>
 
   <script>
     // Live Clock Function
@@ -697,32 +745,22 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Audio Player Handlers
+    // Audio Player & Entry Handler
     const audio = document.getElementById('bgAudio');
     const playIcon = document.getElementById('playIcon');
     const visualizer = document.getElementById('visualizer');
+    const entryOverlay = document.getElementById('entryOverlay');
 
-    function startMusic() {
-      if (audio.paused) {
-        audio.play().then(() => {
-          playIcon.className = 'fa-solid fa-pause';
-          visualizer.classList.add('playing');
-        }).catch(err => {
-          console.log("پخش خودکار توسط مرورگر مسدود شد؛ منتظر اولین کلیک کاربر است.");
-        });
-      }
+    function enterSystem() {
+      audio.play().then(() => {
+        playIcon.className = 'fa-solid fa-pause';
+        visualizer.classList.add('playing');
+        entryOverlay.classList.add('hidden');
+      }).catch(err => {
+        console.log("خطا در پخش موزیک. مطمئن شوید فایل music.mp3 موجود است.", err);
+        entryOverlay.classList.add('hidden');
+      });
     }
-
-    // پخش خودکار با اولین لمس یا کلیک کاربر روی هر جای صفحه
-    document.addEventListener('click', function autoPlayOnFirstInteraction() {
-      startMusic();
-      document.removeEventListener('click', autoPlayOnFirstInteraction);
-    }, { once: true });
-
-    // تلاش برای پخش به محض بارگذاری
-    window.addEventListener('load', () => {
-      startMusic();
-    });
 
     function toggleAudio() {
       if (audio.paused) {
@@ -810,7 +848,7 @@
     const drops = Array(columns).fill(1);
 
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(2, 3, 7, 0.1)';
+      ctx.fillStyle = 'rgba(1, 2, 4, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = '#00f3ff';
