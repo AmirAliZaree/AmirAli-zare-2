@@ -21,7 +21,7 @@
       --accent-purple: #8a2be2;
       --text-main: #ffffff;
       --text-muted: #8b9bb4;
-      --glass-bg: rgba(10, 14, 28, 0.75);
+      --glass-bg: rgba(10, 14, 28, 0.82);
       --glass-border: rgba(0, 243, 255, 0.25);
     }
 
@@ -43,7 +43,6 @@
       overflow: hidden;
       padding: 20px;
       position: relative;
-      perspective: 1200px;
     }
 
     /* Ambient Glowing Lights */
@@ -84,7 +83,7 @@
     .entry-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(3, 5, 12, 0.94);
+      background: rgba(3, 5, 12, 0.96);
       backdrop-filter: blur(25px);
       z-index: 1000;
       display: flex;
@@ -124,20 +123,12 @@
       transform: scale(1.06);
     }
 
-    /* Main Bio Card Container */
+    /* Main Bio Card Container (فیکس و کاملاً ثابت در یک جا) */
     .bio-card-wrapper {
       position: relative;
       z-index: 10;
       width: 100%;
       max-width: 430px;
-      transition: transform 0.15s ease-out;
-      transform-style: preserve-3d;
-      animation: floatCard 6s ease-in-out infinite;
-    }
-
-    @keyframes floatCard {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
     }
 
     .bio-card {
@@ -309,20 +300,20 @@
       50% { opacity: 0.3; transform: scale(1.3); }
     }
 
-    /* Social Icons Section */
+    /* Social & Video Icons Grid (4 کاره: تلگرام، اینستاگرام، گیت‌هاب، ویدیو) */
     .social-icons-grid {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
       width: 100%;
       margin: 2px 0;
     }
 
     .social-tile {
       position: relative;
-      width: 60px;
-      height: 60px;
+      width: 55px;
+      height: 55px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -332,7 +323,7 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      font-size: 24px;
+      font-size: 22px;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
     }
@@ -341,8 +332,8 @@
     .social-tile.telegram:hover {
       background: rgba(34, 158, 217, 0.15);
       border-color: #229ed9;
-      box-shadow: 0 0 30px rgba(34, 158, 217, 0.7);
-      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 0 25px rgba(34, 158, 217, 0.7);
+      transform: translateY(-4px) scale(1.05);
     }
 
     .social-tile.instagram { color: #f09433; }
@@ -354,16 +345,24 @@
     .social-tile.instagram:hover {
       background: rgba(225, 48, 108, 0.15);
       border-color: #e1306c;
-      box-shadow: 0 0 30px rgba(225, 48, 108, 0.7);
-      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 0 25px rgba(225, 48, 108, 0.7);
+      transform: translateY(-4px) scale(1.05);
     }
 
     .social-tile.github { color: #ffffff; }
     .social-tile.github:hover {
       background: rgba(255, 255, 255, 0.15);
       border-color: #ffffff;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+      transform: translateY(-4px) scale(1.05);
+    }
+
+    .social-tile.video-tile { color: #ff0055; }
+    .social-tile.video-tile:hover {
+      background: rgba(255, 0, 85, 0.15);
+      border-color: #ff0055;
+      box-shadow: 0 0 25px rgba(255, 0, 85, 0.7);
+      transform: translateY(-4px) scale(1.05);
     }
 
     /* Terminal Button */
@@ -511,7 +510,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(3, 5, 12, 0.85);
+      background: rgba(3, 5, 12, 0.88);
       backdrop-filter: blur(16px);
       z-index: 100;
       display: flex;
@@ -538,6 +537,26 @@
       text-align: center;
       position: relative;
       box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
+    }
+
+    .video-modal-card {
+      background: #050814;
+      border: 1px solid var(--accent-cyan);
+      border-radius: 20px;
+      padding: 20px;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
+      text-align: center;
+    }
+
+    .video-modal-card video {
+      width: 100%;
+      border-radius: 12px;
+      outline: none;
+      background: #000;
+      margin-top: 10px;
     }
 
     .close-modal {
@@ -614,8 +633,8 @@
   <!-- Matrix Background Canvas -->
   <canvas id="matrixCanvas"></canvas>
 
-  <!-- Parallax Card Wrapper -->
-  <div class="bio-card-wrapper" id="cardWrapper">
+  <!-- Fixed Card Wrapper -->
+  <div class="bio-card-wrapper">
     <div class="bio-card">
       
       <!-- Top Header Bar -->
@@ -648,7 +667,7 @@
         </div>
       </div>
 
-      <!-- Social Icons Grid -->
+      <!-- Social & Video Icons Grid -->
       <div class="social-icons-grid">
         <div class="social-tile telegram" onclick="openTelegramModal()" title="تلگرام">
           <i class="fa-brands fa-telegram"></i>
@@ -659,6 +678,9 @@
         <a href="https://github.com" target="_blank" class="social-tile github" title="گیت‌هاب">
           <i class="fa-brands fa-github"></i>
         </a>
+        <div class="social-tile video-tile" onclick="openVideoModal()" title="ویدیو">
+          <i class="fa-solid fa-film"></i>
+        </div>
       </div>
 
       <!-- Interactive Cyber Terminal Trigger -->
@@ -707,6 +729,15 @@
       <a href="https://t.me" target="_blank" style="width: 100%; padding: 11px; border-radius: 14px; border: none; background: linear-gradient(135deg, #0088cc, #004466); color: #fff; font-weight: 700; font-size: 13px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; margin-top: 16px;">
         باز کردن تلگرام <i class="fa-solid fa-arrow-left"></i>
       </a>
+    </div>
+  </div>
+
+  <!-- Video Modal Overlay -->
+  <div class="modal-overlay" id="videoModalOverlay">
+    <div class="video-modal-card">
+      <i class="fa-solid fa-xmark close-modal" onclick="closeVideoModal()"></i>
+      <div style="font-family:'Orbitron',sans-serif; color:var(--accent-cyan); font-size:13px; margin-bottom:6px;">MEDIA PLAYER // STREAM</div>
+      <video id="customVideo" controls src="video.mp4"></video>
     </div>
   </div>
 
@@ -779,6 +810,16 @@
     function closeTelegramModal() {
       document.getElementById('tgModalOverlay').classList.remove('active');
     }
+
+    const videoEl = document.getElementById('customVideo');
+    function openVideoModal() {
+      document.getElementById('videoModalOverlay').classList.add('active');
+    }
+    function closeVideoModal() {
+      document.getElementById('videoModalOverlay').classList.remove('active');
+      videoEl.pause();
+    }
+
     function openTerminalModal() {
       document.getElementById('terminalModalOverlay').classList.add('active');
       document.getElementById('terminalInput').focus();
@@ -786,14 +827,6 @@
     function closeTerminalModal() {
       document.getElementById('terminalModalOverlay').classList.remove('active');
     }
-
-    // 3D Tilt Card Physics
-    const cardWrapper = document.getElementById('cardWrapper');
-    document.addEventListener('mousemove', (e) => {
-      const xAxis = (window.innerWidth / 2 - e.pageX) / 30;
-      const yAxis = (window.innerHeight / 2 - e.pageY) / 30;
-      cardWrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-    });
 
     // Terminal Commands Handlers
     function handleTerminalCommand(e) {
