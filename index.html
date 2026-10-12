@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMIRALI ZARE | Personal Cyber Bio</title>
+  <title>AMIRALI ZARE | Cyber Bio</title>
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,15 +15,14 @@
 
   <style>
     :root {
-      --bg-dark: #070913;
+      --bg-dark: #04060a;
       --accent-cyan: #00f3ff;
-      --accent-blue: #0066ff;
-      --accent-purple: #8a2be2;
+      --accent-magenta: #ff0055;
+      --accent-purple: #9d00ff;
       --text-main: #ffffff;
-      --text-muted: #8e9bb0;
-      --glass-bg: rgba(13, 17, 33, 0.65);
-      --glass-border: rgba(0, 243, 255, 0.2);
-      --glass-hover: rgba(0, 243, 255, 0.35);
+      --text-muted: #808ea3;
+      --glass-bg: rgba(8, 11, 22, 0.75);
+      --glass-border: rgba(0, 243, 255, 0.25);
     }
 
     * {
@@ -46,7 +45,19 @@
       position: relative;
     }
 
-    /* Background Canvas */
+    /* Cyber Scanline Effect */
+    body::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      z-index: 5;
+      background-size: 100% 3px, 6px 100%;
+      pointer-events: none;
+    }
+
+    /* Particle Background Canvas */
     #particleCanvas {
       position: fixed;
       top: 0;
@@ -62,24 +73,35 @@
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 440px;
+      max-width: 430px;
       background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
       border-radius: 28px;
-      padding: 28px 24px;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8),
-                  inset 0 1px 1px rgba(255, 255, 255, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 30px 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95),
+                  0 0 40px rgba(0, 243, 255, 0.1),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.2);
       display: flex;
       flex-direction: column;
       gap: 22px;
+      overflow: hidden;
     }
 
-    .bio-card:hover {
-      box-shadow: 0 25px 60px rgba(0, 243, 255, 0.15),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.25);
+    .bio-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+      animation: scanLaser 4s linear infinite;
+    }
+
+    @keyframes scanLaser {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
     }
 
     /* Header Bar */
@@ -94,30 +116,27 @@
     .developer-tag {
       font-family: 'Orbitron', sans-serif;
       font-size: 11px;
-      letter-spacing: 1.5px;
+      font-weight: 800;
+      letter-spacing: 2px;
       color: var(--accent-cyan);
       background: rgba(0, 243, 255, 0.08);
-      border: 1px solid rgba(0, 243, 255, 0.25);
-      padding: 5px 12px;
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      padding: 6px 14px;
       border-radius: 20px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       text-transform: uppercase;
-      box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
-    }
-
-    .developer-tag i {
-      font-size: 10px;
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
     }
 
     .location-tag {
       font-size: 12px;
-      font-weight: 600;
-      color: var(--text-main);
+      font-weight: 700;
+      color: #fff;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 5px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 14px;
       border-radius: 20px;
       display: flex;
       align-items: center;
@@ -125,8 +144,9 @@
     }
 
     .location-tag i {
-      color: #ff3b30;
-      font-size: 12px;
+      color: #ff2a5f;
+      font-size: 13px;
+      filter: drop-shadow(0 0 5px #ff2a5f);
     }
 
     /* Profile Avatar & Info */
@@ -140,22 +160,22 @@
 
     .avatar-wrapper {
       position: relative;
-      width: 105px;
-      height: 105px;
+      width: 110px;
+      height: 110px;
       margin-bottom: 4px;
     }
 
     .avatar-ring {
       position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
-      animation: rotateRing 6s linear infinite;
-      opacity: 0.85;
-      filter: blur(2px);
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta), var(--accent-purple));
+      animation: rotateRing 4s linear infinite;
+      opacity: 0.9;
+      filter: blur(3px);
     }
 
     @keyframes rotateRing {
@@ -169,28 +189,29 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #0d1121;
-      background: #1a1f36;
+      border: 3px solid #050811;
+      background: #0f172a;
       z-index: 2;
     }
 
     .profile-name {
       font-family: 'Orbitron', 'Vazirmatn', sans-serif;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 1px;
+      font-size: 21px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       direction: ltr;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
     }
 
     .verified-badge {
       color: #0095f6;
-      font-size: 17px;
-      filter: drop-shadow(0 0 6px rgba(0, 149, 246, 0.6));
+      font-size: 18px;
+      filter: drop-shadow(0 0 8px rgba(0, 149, 246, 0.8));
     }
 
     /* Status Bar */
@@ -198,9 +219,9 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      padding: 8px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 7px 16px;
       border-radius: 50px;
       font-size: 11px;
       color: var(--text-muted);
@@ -211,75 +232,64 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      color: #34c759;
-      font-weight: 600;
+      color: #00ff88;
+      font-weight: 700;
     }
 
     .status-dot {
-      width: 7px;
-      height: 7px;
-      background-color: #34c759;
+      width: 8px;
+      height: 8px;
+      background-color: #00ff88;
       border-radius: 50%;
-      box-shadow: 0 0 8px #34c759;
-      animation: pulseDot 1.8s infinite;
+      box-shadow: 0 0 10px #00ff88;
+      animation: pulseDot 1.5s infinite;
     }
 
     @keyframes pulseDot {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.2); }
+      50% { opacity: 0.3; transform: scale(1.3); }
     }
 
-    .divider-dot {
-      width: 3px;
-      height: 3px;
-      background-color: var(--text-muted);
-      border-radius: 50%;
-      opacity: 0.5;
-    }
-
-    /* Social Icons Section (Glass & Pure Brand Colors) */
+    /* Social Icons Section */
     .social-icons-grid {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       width: 100%;
-      margin: 4px 0;
+      margin: 6px 0;
     }
 
     .social-tile {
       position: relative;
-      width: 58px;
-      height: 58px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.04);
+      width: 60px;
+      height: 60px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       display: flex;
       align-items: center;
-      justify-content: justify;
       justify-content: center;
       text-decoration: none;
-      font-size: 24px;
+      font-size: 25px;
       transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
     }
 
-    /* Brand Authentic Colors & Custom Glowing Effects */
     .social-tile.telegram {
       color: #229ed9;
     }
     .social-tile.telegram:hover {
-      background: rgba(34, 158, 217, 0.12);
+      background: rgba(34, 158, 217, 0.15);
       border-color: #229ed9;
-      box-shadow: 0 0 25px rgba(34, 158, 217, 0.6), inset 0 0 10px rgba(34, 158, 217, 0.3);
-      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 0 30px rgba(34, 158, 217, 0.7), inset 0 0 15px rgba(34, 158, 217, 0.4);
+      transform: translateY(-6px) scale(1.08);
     }
 
     .social-tile.instagram {
       color: #f09433;
-      background: radial-gradient(circle at 30% 107%, rgba(253, 244, 151, 0.05) 0%, rgba(253, 244, 151, 0.05) 5%, rgba(253, 89, 73, 0.05) 45%, rgba(214, 36, 159, 0.05) 60%, rgba(40, 90, 235, 0.05) 90%);
     }
     .social-tile.instagram i {
       background: -webkit-linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
@@ -287,20 +297,20 @@
       -webkit-text-fill-color: transparent;
     }
     .social-tile.instagram:hover {
-      background: rgba(225, 48, 108, 0.12);
+      background: rgba(225, 48, 108, 0.15);
       border-color: #e1306c;
-      box-shadow: 0 0 25px rgba(225, 48, 108, 0.6), inset 0 0 10px rgba(225, 48, 108, 0.3);
-      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 0 30px rgba(225, 48, 108, 0.7), inset 0 0 15px rgba(225, 48, 108, 0.4);
+      transform: translateY(-6px) scale(1.08);
     }
 
     .social-tile.github {
       color: #ffffff;
     }
     .social-tile.github:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.15);
       border-color: #ffffff;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.2);
-      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.3);
+      transform: translateY(-6px) scale(1.08);
     }
 
     /* Tech Stack Pills */
@@ -315,30 +325,31 @@
     .tech-pill {
       font-family: 'Orbitron', sans-serif;
       font-size: 10px;
-      padding: 5px 12px;
-      background: rgba(255, 255, 255, 0.03);
+      font-weight: 600;
+      padding: 6px 13px;
+      background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 12px;
       color: var(--text-muted);
       transition: all 0.25s ease;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
 
     .tech-pill:hover {
       border-color: var(--accent-cyan);
       color: var(--accent-cyan);
-      background: rgba(0, 243, 255, 0.05);
-      box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+      background: rgba(0, 243, 255, 0.08);
+      box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
     }
 
     /* Audio Player Widget */
     .audio-widget {
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 12px 16px;
+      border-radius: 20px;
+      padding: 12px 18px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -346,25 +357,25 @@
     }
 
     .play-btn {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
-      background: var(--accent-cyan);
+      background: linear-gradient(135deg, var(--accent-cyan), #0088ff);
       border: none;
-      color: #070913;
-      font-size: 14px;
+      color: #04060a;
+      font-size: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
       flex-shrink: 0;
     }
 
     .play-btn:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 18px rgba(0, 243, 255, 0.7);
+      box-shadow: 0 0 22px rgba(0, 243, 255, 0.8);
     }
 
     .audio-info {
@@ -377,11 +388,8 @@
 
     .track-title {
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
       color: #fff;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
     }
 
     .track-artist {
@@ -389,7 +397,6 @@
       color: var(--text-muted);
     }
 
-    /* Visualizer Animation */
     .visualizer {
       display: flex;
       align-items: flex-end;
@@ -402,7 +409,6 @@
       background: var(--accent-cyan);
       border-radius: 2px;
       height: 3px;
-      transition: height 0.2s ease;
     }
 
     .playing .bar {
@@ -419,15 +425,13 @@
       100% { height: 16px; }
     }
 
-    /* Telegram Modal Overlay */
+    /* Modal */
     .modal-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(5, 7, 15, 0.8);
-      backdrop-filter: blur(12px);
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(4, 6, 10, 0.85);
+      backdrop-filter: blur(15px);
       z-index: 100;
       display: flex;
       justify-content: center;
@@ -444,7 +448,7 @@
     }
 
     .telegram-modal {
-      background: #0f1428;
+      background: #090e1a;
       border: 1px solid var(--glass-border);
       border-radius: 24px;
       padding: 28px;
@@ -453,33 +457,20 @@
       text-align: center;
       position: relative;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
-      transform: translateY(20px);
-      transition: transform 0.3s ease;
-    }
-
-    .modal-overlay.active .telegram-modal {
-      transform: translateY(0);
     }
 
     .close-modal {
       position: absolute;
-      top: 16px;
-      left: 16px;
+      top: 16px; left: 16px;
       color: var(--text-muted);
       font-size: 18px;
       cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    .close-modal:hover {
-      color: #fff;
     }
 
     .modal-icon {
-      width: 60px;
-      height: 60px;
-      background: rgba(0, 136, 204, 0.12);
-      border: 1px solid rgba(0, 136, 204, 0.3);
+      width: 60px; height: 60px;
+      background: rgba(34, 158, 217, 0.15);
+      border: 1px solid rgba(34, 158, 217, 0.4);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -489,18 +480,6 @@
       font-size: 26px;
     }
 
-    .modal-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .modal-sub {
-      font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 20px;
-    }
-
     .modal-btn {
       width: 100%;
       padding: 12px;
@@ -508,8 +487,7 @@
       border: none;
       background: linear-gradient(135deg, #0088cc, #005588);
       color: #fff;
-      font-family: inherit;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 14px;
       cursor: pointer;
       display: flex;
@@ -517,25 +495,16 @@
       justify-content: center;
       gap: 8px;
       text-decoration: none;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
-    }
-
-    .modal-btn:hover {
-      opacity: 0.95;
-      transform: translateY(-2px);
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Particle Background Canvas -->
   <canvas id="particleCanvas"></canvas>
 
-  <!-- Main Bio Card -->
-  <div class="bio-card" id="bioCard">
+  <div class="bio-card">
     
-    <!-- Top Header Bar -->
     <div class="top-header-bar">
       <div class="developer-tag">
         <i class="fa-solid fa-code"></i> Developer
@@ -545,11 +514,9 @@
       </div>
     </div>
 
-    <!-- Profile Avatar & Title -->
     <div class="profile-section">
       <div class="avatar-wrapper">
         <div class="avatar-ring"></div>
-        <!-- آدرس عکس پروفایل به profile.jpg تغییر کرد -->
         <img src="profile.jpg" alt="AMIRALI ZARE" class="avatar-img">
       </div>
       
@@ -557,17 +524,15 @@
         AMIRALI ZARE <i class="fa-solid fa-circle-check verified-badge"></i>
       </div>
 
-      <!-- Live Status & Clock -->
       <div class="status-bar">
         <div class="status-indicator">
           <span class="status-dot"></span> Online
         </div>
-        <span class="divider-dot"></span>
+        <span style="opacity: 0.3;">|</span>
         <div id="liveClock">--:--:--</div>
       </div>
     </div>
 
-    <!-- Social Icons Grid (Authentic Brand Colors & Glass Glow) -->
     <div class="social-icons-grid">
       <div class="social-tile telegram" onclick="openTelegramModal()" title="تلگرام">
         <i class="fa-brands fa-telegram"></i>
@@ -580,7 +545,6 @@
       </a>
     </div>
 
-    <!-- Tech Stack Skills -->
     <div class="tech-stack">
       <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML5</span>
       <span class="tech-pill"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
@@ -589,9 +553,8 @@
       <span class="tech-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
     </div>
 
-    <!-- Cyber Audio Widget -->
     <div class="audio-widget">
-      <button class="play-btn" id="playAudioBtn" onclick="toggleAudio()">
+      <button class="play-btn" onclick="toggleAudio()">
         <i class="fa-solid fa-play" id="playIcon"></i>
       </button>
       <div class="audio-info">
@@ -608,26 +571,23 @@
 
   </div>
 
-  <!-- Telegram Contact Modal -->
   <div class="modal-overlay" id="tgModalOverlay">
     <div class="telegram-modal">
       <i class="fa-solid fa-xmark close-modal" onclick="closeTelegramModal()"></i>
       <div class="modal-icon">
         <i class="fa-brands fa-telegram"></i>
       </div>
-      <div class="modal-title">ارسال پیام در تلگرام</div>
-      <div class="modal-sub">برای گفتگو مستقیم کلیک کنید</div>
+      <h3 style="color:#fff; font-size:16px;">ارسال پیام در تلگرام</h3>
+      <p style="color:var(--text-muted); font-size:12px; margin-top:4px;">برای گفتگو مستقیم کلیک کنید</p>
       <a href="https://t.me" target="_blank" class="modal-btn">
         باز کردن تلگرام <i class="fa-solid fa-arrow-left"></i>
       </a>
     </div>
   </div>
 
-  <!-- Audio Element -->
   <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73185.mp3?filename=cyberpunk-2099-10701.mp3"></audio>
 
   <script>
-    // Live Tabriz Time
     function updateClock() {
       const now = new Date();
       const options = { timeZone: 'Asia/Tehran', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
@@ -636,7 +596,6 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Audio Player Toggle
     const audio = document.getElementById('bgAudio');
     const playIcon = document.getElementById('playIcon');
     const visualizer = document.getElementById('visualizer');
@@ -653,7 +612,6 @@
       }
     }
 
-    // Telegram Modal Handlers
     function openTelegramModal() {
       document.getElementById('tgModalOverlay').classList.add('active');
     }
@@ -661,12 +619,9 @@
       document.getElementById('tgModalOverlay').classList.remove('active');
     }
 
-    // Canvas Background Animation
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
-
     let particles = [];
-    const particleCount = 45;
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -676,24 +631,19 @@
     resizeCanvas();
 
     class Particle {
-      constructor() {
-        this.reset();
-      }
+      constructor() { this.reset(); }
       reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.4;
-        this.speedY = (Math.random() - 0.5) * 0.4;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
         this.opacity = Math.random() * 0.5 + 0.2;
       }
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
-          this.reset();
-        }
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
       }
       draw() {
         ctx.fillStyle = `rgba(0, 243, 255, ${this.opacity})`;
@@ -703,16 +653,11 @@
       }
     }
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
+    for (let i = 0; i < 50; i++) particles.push(new Particle());
 
     function animateParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
+      particles.forEach(p => { p.update(); p.draw(); });
       requestAnimationFrame(animateParticles);
     }
     animateParticles();
