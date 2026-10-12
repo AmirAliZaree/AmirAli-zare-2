@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMIRALI ZARE | Cyber Bio</title>
+  <title>AMIRALI ZARE | Cyber Overlord</title>
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Google Fonts: Vazirmatn & Orbitron -->
+  <!-- Google Fonts: Vazirmatn, Orbitron, Share Tech Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Vazirmatn:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&family=Vazirmatn:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-dark: #04060a;
+      --bg-dark: #020307;
       --accent-cyan: #00f3ff;
       --accent-magenta: #ff0055;
       --accent-purple: #9d00ff;
       --text-main: #ffffff;
-      --text-muted: #808ea3;
-      --glass-bg: rgba(8, 11, 22, 0.75);
-      --glass-border: rgba(0, 243, 255, 0.25);
+      --text-muted: #7b8b9e;
+      --glass-bg: rgba(6, 9, 18, 0.85);
+      --glass-border: rgba(0, 243, 255, 0.3);
+      --glow-cyan: 0 0 25px rgba(0, 243, 255, 0.5);
     }
 
     * {
@@ -43,22 +44,23 @@
       overflow-x: hidden;
       padding: 20px;
       position: relative;
+      perspective: 1000px;
     }
 
-    /* Cyber Scanline Effect */
+    /* Cyber Scanline Overlay */
     body::before {
-      content: " ";
-      display: block;
+      content: "";
       position: fixed;
-      top: 0; left: 0; bottom: 0; right: 0;
-      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.35) 50%), 
+                  linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
       z-index: 5;
-      background-size: 100% 3px, 6px 100%;
+      background-size: 100% 4px, 6px 100%;
       pointer-events: none;
     }
 
-    /* Particle Background Canvas */
-    #particleCanvas {
+    /* Background Canvas */
+    #matrixCanvas {
       position: fixed;
       top: 0;
       left: 0;
@@ -68,35 +70,42 @@
       pointer-events: none;
     }
 
-    /* Main Container */
-    .bio-card {
+    /* Main Bio Card Container */
+    .bio-card-wrapper {
       position: relative;
       z-index: 10;
       width: 100%;
-      max-width: 430px;
+      max-width: 440px;
+      transition: transform 0.15s ease-out;
+      transform-style: preserve-3d;
+    }
+
+    .bio-card {
+      position: relative;
       background: var(--glass-bg);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       border: 1px solid var(--glass-border);
-      border-radius: 28px;
-      padding: 30px 24px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.95),
-                  0 0 40px rgba(0, 243, 255, 0.1),
-                  inset 0 1px 2px rgba(255, 255, 255, 0.2);
+      border-radius: 32px;
+      padding: 32px 26px;
+      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.95),
+                  0 0 50px rgba(0, 243, 255, 0.15),
+                  inset 0 1px 2px rgba(255, 255, 255, 0.25);
       display: flex;
       flex-direction: column;
       gap: 22px;
       overflow: hidden;
     }
 
+    /* Laser Scanner Animation */
     .bio-card::after {
       content: '';
       position: absolute;
       top: 0; left: -100%;
       width: 100%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-      animation: scanLaser 4s linear infinite;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), var(--accent-magenta), transparent);
+      animation: scanLaser 3.5s linear infinite;
     }
 
     @keyframes scanLaser {
@@ -116,18 +125,18 @@
     .developer-tag {
       font-family: 'Orbitron', sans-serif;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: 2px;
       color: var(--accent-cyan);
       background: rgba(0, 243, 255, 0.08);
-      border: 1px solid rgba(0, 243, 255, 0.3);
+      border: 1px solid rgba(0, 243, 255, 0.35);
       padding: 6px 14px;
       border-radius: 20px;
       display: flex;
       align-items: center;
       gap: 7px;
       text-transform: uppercase;
-      box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
     }
 
     .location-tag {
@@ -146,10 +155,10 @@
     .location-tag i {
       color: #ff2a5f;
       font-size: 13px;
-      filter: drop-shadow(0 0 5px #ff2a5f);
+      filter: drop-shadow(0 0 6px #ff2a5f);
     }
 
-    /* Profile Avatar & Info */
+    /* Profile Avatar & Title */
     .profile-section {
       display: flex;
       flex-direction: column;
@@ -160,22 +169,19 @@
 
     .avatar-wrapper {
       position: relative;
-      width: 110px;
-      height: 110px;
+      width: 115px;
+      height: 115px;
       margin-bottom: 4px;
     }
 
     .avatar-ring {
       position: absolute;
-      top: -5px;
-      left: -5px;
-      right: -5px;
-      bottom: -5px;
+      top: -6px; left: -6px; right: -6px; bottom: -6px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-cyan), var(--accent-magenta), var(--accent-purple));
-      animation: rotateRing 4s linear infinite;
-      opacity: 0.9;
-      filter: blur(3px);
+      animation: rotateRing 3.5s linear infinite;
+      opacity: 0.95;
+      filter: blur(4px);
     }
 
     @keyframes rotateRing {
@@ -189,14 +195,15 @@
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #050811;
-      background: #0f172a;
+      border: 3px solid #03050c;
+      background: #0d1322;
       z-index: 2;
     }
 
+    /* Glitch Name Effect */
     .profile-name {
       font-family: 'Orbitron', 'Vazirmatn', sans-serif;
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 900;
       letter-spacing: 1.5px;
       color: #fff;
@@ -205,23 +212,37 @@
       justify-content: center;
       gap: 8px;
       direction: ltr;
-      text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+      position: relative;
+      cursor: pointer;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    }
+
+    .profile-name:hover {
+      animation: glitchText 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+    }
+
+    @keyframes glitchText {
+      0% { transform: translate(0); text-shadow: -2px 0 var(--accent-magenta), 2px 0 var(--accent-cyan); }
+      25% { transform: translate(-2px, 2px); }
+      50% { transform: translate(2px, -2px); text-shadow: 2px 0 var(--accent-magenta), -2px 0 var(--accent-cyan); }
+      75% { transform: translate(-1px, -1px); }
+      100% { transform: translate(0); }
     }
 
     .verified-badge {
       color: #0095f6;
-      font-size: 18px;
-      filter: drop-shadow(0 0 8px rgba(0, 149, 246, 0.8));
+      font-size: 19px;
+      filter: drop-shadow(0 0 10px rgba(0, 149, 246, 0.9));
     }
 
-    /* Status Bar */
+    /* Status Indicator */
     .status-bar {
       display: flex;
       align-items: center;
       gap: 12px;
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.5);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 7px 16px;
+      padding: 7px 18px;
       border-radius: 50px;
       font-size: 11px;
       color: var(--text-muted);
@@ -241,7 +262,7 @@
       height: 8px;
       background-color: #00ff88;
       border-radius: 50%;
-      box-shadow: 0 0 10px #00ff88;
+      box-shadow: 0 0 12px #00ff88;
       animation: pulseDot 1.5s infinite;
     }
 
@@ -250,20 +271,20 @@
       50% { opacity: 0.3; transform: scale(1.3); }
     }
 
-    /* Social Icons Section */
+    /* Social Icons Section (Pure Icons & Glass Glow) */
     .social-icons-grid {
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 18px;
       width: 100%;
-      margin: 6px 0;
+      margin: 4px 0;
     }
 
     .social-tile {
       position: relative;
-      width: 60px;
-      height: 60px;
+      width: 62px;
+      height: 62px;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.12);
@@ -273,44 +294,66 @@
       align-items: center;
       justify-content: center;
       text-decoration: none;
-      font-size: 25px;
+      font-size: 26px;
       transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: pointer;
     }
 
-    .social-tile.telegram {
-      color: #229ed9;
-    }
+    .social-tile.telegram { color: #229ed9; }
     .social-tile.telegram:hover {
-      background: rgba(34, 158, 217, 0.15);
+      background: rgba(34, 158, 217, 0.18);
       border-color: #229ed9;
-      box-shadow: 0 0 30px rgba(34, 158, 217, 0.7), inset 0 0 15px rgba(34, 158, 217, 0.4);
+      box-shadow: 0 0 35px rgba(34, 158, 217, 0.8), inset 0 0 15px rgba(34, 158, 217, 0.4);
       transform: translateY(-6px) scale(1.08);
     }
 
-    .social-tile.instagram {
-      color: #f09433;
-    }
+    .social-tile.instagram { color: #f09433; }
     .social-tile.instagram i {
       background: -webkit-linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     .social-tile.instagram:hover {
-      background: rgba(225, 48, 108, 0.15);
+      background: rgba(225, 48, 108, 0.18);
       border-color: #e1306c;
-      box-shadow: 0 0 30px rgba(225, 48, 108, 0.7), inset 0 0 15px rgba(225, 48, 108, 0.4);
+      box-shadow: 0 0 35px rgba(225, 48, 108, 0.8), inset 0 0 15px rgba(225, 48, 108, 0.4);
       transform: translateY(-6px) scale(1.08);
     }
 
-    .social-tile.github {
-      color: #ffffff;
-    }
+    .social-tile.github { color: #ffffff; }
     .social-tile.github:hover {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.18);
       border-color: #ffffff;
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), inset 0 0 15px rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 35px rgba(255, 255, 255, 0.7), inset 0 0 15px rgba(255, 255, 255, 0.3);
       transform: translateY(-6px) scale(1.08);
+    }
+
+    /* Interactive Cyber Terminal Button */
+    .terminal-trigger-btn {
+      width: 100%;
+      background: rgba(0, 243, 255, 0.05);
+      border: 1px dashed rgba(0, 243, 255, 0.35);
+      color: var(--accent-cyan);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 10px;
+      border-radius: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+    }
+
+    .terminal-trigger-btn:hover {
+      background: rgba(0, 243, 255, 0.15);
+      border-style: solid;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
+      transform: translateY(-2px);
     }
 
     /* Tech Stack Pills */
@@ -325,7 +368,7 @@
     .tech-pill {
       font-family: 'Orbitron', sans-serif;
       font-size: 10px;
-      font-weight: 600;
+      font-weight: 700;
       padding: 6px 13px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.08);
@@ -341,12 +384,12 @@
       border-color: var(--accent-cyan);
       color: var(--accent-cyan);
       background: rgba(0, 243, 255, 0.08);
-      box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+      box-shadow: 0 0 14px rgba(0, 243, 255, 0.35);
     }
 
     /* Audio Player Widget */
     .audio-widget {
-      background: rgba(0, 0, 0, 0.4);
+      background: rgba(0, 0, 0, 0.45);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 20px;
       padding: 12px 18px;
@@ -357,25 +400,25 @@
     }
 
     .play-btn {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-cyan), #0088ff);
       border: none;
-      color: #04060a;
+      color: #020307;
       font-size: 15px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       transition: all 0.25s ease;
-      box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+      box-shadow: 0 0 16px rgba(0, 243, 255, 0.5);
       flex-shrink: 0;
     }
 
     .play-btn:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 22px rgba(0, 243, 255, 0.8);
+      box-shadow: 0 0 25px rgba(0, 243, 255, 0.85);
     }
 
     .audio-info {
@@ -425,13 +468,13 @@
       100% { height: 16px; }
     }
 
-    /* Modal */
+    /* Modal Popups (Telegram & Cyber Terminal) */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(4, 6, 10, 0.85);
-      backdrop-filter: blur(15px);
+      background: rgba(2, 3, 7, 0.88);
+      backdrop-filter: blur(20px);
       z-index: 100;
       display: flex;
       justify-content: center;
@@ -447,147 +490,206 @@
       pointer-events: all;
     }
 
-    .telegram-modal {
-      background: #090e1a;
+    .cyber-modal-card {
+      background: #080c18;
       border: 1px solid var(--glass-border);
-      border-radius: 24px;
+      border-radius: 26px;
       padding: 28px;
       width: 100%;
-      max-width: 360px;
+      max-width: 380px;
       text-align: center;
       position: relative;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
     }
 
     .close-modal {
       position: absolute;
-      top: 16px; left: 16px;
+      top: 18px; left: 18px;
       color: var(--text-muted);
-      font-size: 18px;
+      font-size: 20px;
       cursor: pointer;
+      transition: color 0.2s ease;
     }
 
-    .modal-icon {
-      width: 60px; height: 60px;
-      background: rgba(34, 158, 217, 0.15);
-      border: 1px solid rgba(34, 158, 217, 0.4);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 16px;
-      color: #229ed9;
-      font-size: 26px;
-    }
+    .close-modal:hover { color: #fff; }
 
-    .modal-btn {
+    /* Cyber Terminal Window Modal */
+    .terminal-modal {
+      background: #040812;
+      border: 1px solid var(--accent-cyan);
+      border-radius: 18px;
+      padding: 20px;
       width: 100%;
-      padding: 12px;
-      border-radius: 14px;
-      border: none;
-      background: linear-gradient(135deg, #0088cc, #005588);
-      color: #fff;
-      font-weight: 700;
-      font-size: 14px;
-      cursor: pointer;
+      max-width: 480px;
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--accent-cyan);
+      box-shadow: 0 0 40px rgba(0, 243, 255, 0.3);
+      direction: ltr;
+      text-align: left;
+    }
+
+    .terminal-header {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+      font-size: 12px;
+    }
+
+    .terminal-body {
+      height: 220px;
+      overflow-y: auto;
+      font-size: 13px;
+      display: flex;
+      flex-direction: column;
       gap: 8px;
-      text-decoration: none;
-      margin-top: 15px;
+    }
+
+    .terminal-input-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .terminal-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: inherit;
+      font-size: 13px;
+      flex-grow: 1;
     }
   </style>
 </head>
 <body>
 
-  <canvas id="particleCanvas"></canvas>
+  <!-- Matrix Background Canvas -->
+  <canvas id="matrixCanvas"></canvas>
 
-  <div class="bio-card">
-    
-    <div class="top-header-bar">
-      <div class="developer-tag">
-        <i class="fa-solid fa-code"></i> programmer
-      </div>
-      <div class="location-tag">
-        𝐓𝐚𝐛𝐫𝐢𝐳 <i class="fa-solid fa-location-dot"></i>
-      </div>
-    </div>
-
-    <div class="profile-section">
-      <div class="avatar-wrapper">
-        <div class="avatar-ring"></div>
-        <img src="profile.jpg" alt="AMIRALI ZARE" class="avatar-img">
-      </div>
+  <!-- Parallax Card Wrapper -->
+  <div class="bio-card-wrapper" id="cardWrapper">
+    <div class="bio-card">
       
-      <div class="profile-name">
-        AMIRALI ZARE <i class="fa-solid fa-circle-check verified-badge"></i>
-      </div>
-
-      <div class="status-bar">
-        <div class="status-indicator">
-          <span class="status-dot"></span> Online
+      <!-- Top Header Bar -->
+      <div class="top-header-bar">
+        <div class="developer-tag">
+          <i class="fa-solid fa-code"></i> Developer
         </div>
-        <span style="opacity: 0.3;">|</span>
-        <div id="liveClock">--:--:--</div>
+        <div class="location-tag">
+          تبریز <i class="fa-solid fa-location-dot"></i>
+        </div>
       </div>
-    </div>
 
-    <div class="social-icons-grid">
-      <div class="social-tile telegram" onclick="openTelegramModal()" title="تلگرام">
-        <i class="fa-brands fa-telegram"></i>
+      <!-- Profile Avatar & Title -->
+      <div class="profile-section">
+        <div class="avatar-wrapper">
+          <div class="avatar-ring"></div>
+          <img src="profile.jpg" alt="AMIRALI ZARE" class="avatar-img">
+        </div>
+        
+        <div class="profile-name" id="profileName">
+          AMIRALI ZARE <i class="fa-solid fa-circle-check verified-badge"></i>
+        </div>
+
+        <div class="status-bar">
+          <div class="status-indicator">
+            <span class="status-dot"></span> Online
+          </div>
+          <span style="opacity: 0.3;">|</span>
+          <div id="liveClock">--:--:--</div>
+        </div>
       </div>
-      <a href="https://instagram.com" target="_blank" class="social-tile instagram" title="اینستاگرام">
-        <i class="fa-brands fa-instagram"></i>
-      </a>
-      <a href="https://github.com" target="_blank" class="social-tile github" title="گیت‌هاب">
-        <i class="fa-brands fa-github"></i>
-      </a>
-    </div>
 
-    <div class="tech-stack">
-      <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML5</span>
-      <span class="tech-pill"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-      <span class="tech-pill"><i class="fa-brands fa-js"></i> JavaScript</span>
-      <span class="tech-pill"><i class="fa-brands fa-python"></i> Python</span>
-      <span class="tech-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
-    </div>
+      <!-- Social Icons Grid -->
+      <div class="social-icons-grid">
+        <div class="social-tile telegram" onclick="openTelegramModal()" title="تلگرام">
+          <i class="fa-brands fa-telegram"></i>
+        </div>
+        <a href="https://instagram.com" target="_blank" class="social-tile instagram" title="اینستاگرام">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://github.com" target="_blank" class="social-tile github" title="گیت‌هاب">
+          <i class="fa-brands fa-github"></i>
+        </a>
+      </div>
 
-    <div class="audio-widget">
-      <button class="play-btn" onclick="toggleAudio()">
-        <i class="fa-solid fa-play" id="playIcon"></i>
+      <!-- Interactive Cyber Terminal Trigger -->
+      <button class="terminal-trigger-btn" onclick="openTerminalModal()">
+        <i class="fa-solid fa-terminal"></i> Launch System Terminal
       </button>
-      <div class="audio-info">
-        <div class="track-title">Cyberpunk Ambient Synth</div>
-        <div class="track-artist">Background Track</div>
-      </div>
-      <div class="visualizer" id="visualizer">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </div>
 
+      <!-- Tech Stack Pills -->
+      <div class="tech-stack">
+        <span class="tech-pill"><i class="fa-brands fa-html5"></i> HTML5</span>
+        <span class="tech-pill"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
+        <span class="tech-pill"><i class="fa-brands fa-js"></i> JavaScript</span>
+        <span class="tech-pill"><i class="fa-brands fa-python"></i> Python</span>
+        <span class="tech-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
+      </div>
+
+      <!-- Cyber Audio Player -->
+      <div class="audio-widget">
+        <button class="play-btn" onclick="toggleAudio()">
+          <i class="fa-solid fa-play" id="playIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="track-title">Cyberpunk Ambient Synth</div>
+          <div class="track-artist">Background Track</div>
+        </div>
+        <div class="visualizer" id="visualizer">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
+  <!-- Telegram Contact Modal Overlay -->
   <div class="modal-overlay" id="tgModalOverlay">
-    <div class="telegram-modal">
+    <div class="cyber-modal-card">
       <i class="fa-solid fa-xmark close-modal" onclick="closeTelegramModal()"></i>
-      <div class="modal-icon">
+      <div style="width: 60px; height: 60px; background: rgba(34, 158, 217, 0.15); border: 1px solid rgba(34, 158, 217, 0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; color: #229ed9; font-size: 26px;">
         <i class="fa-brands fa-telegram"></i>
       </div>
       <h3 style="color:#fff; font-size:16px;">ارسال پیام در تلگرام</h3>
       <p style="color:var(--text-muted); font-size:12px; margin-top:4px;">برای گفتگو مستقیم کلیک کنید</p>
-      <a href="https://t.me" target="_blank" class="modal-btn">
+      <a href="https://t.me" target="_blank" style="width: 100%; padding: 12px; border-radius: 14px; border: none; background: linear-gradient(135deg, #0088cc, #005588); color: #fff; font-weight: 700; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; margin-top: 18px;">
         باز کردن تلگرام <i class="fa-solid fa-arrow-left"></i>
       </a>
     </div>
   </div>
 
+  <!-- Interactive Terminal Modal Overlay -->
+  <div class="modal-overlay" id="terminalModalOverlay">
+    <div class="terminal-modal">
+      <div class="terminal-header">
+        <span>OVERLORD_CONSOLE_V4.2</span>
+        <i class="fa-solid fa-xmark close-modal" onclick="closeTerminalModal()" style="position:static; font-size:14px;"></i>
+      </div>
+      <div class="terminal-body" id="terminalOutput">
+        <div>[SYSTEM]: INITIALIZING CYBER HUD CORE...</div>
+        <div>[SYSTEM]: USER AUTHENTICATED: AMIRALI ZARE</div>
+        <div>[SYSTEM]: TYPE <span style="color:#fff;">'help'</span> FOR COMMANDS.</div>
+      </div>
+      <div class="terminal-input-line">
+        <span style="color:var(--accent-magenta);">$</span>
+        <input type="text" class="terminal-input" id="terminalInput" placeholder="Enter command..." onkeydown="handleTerminalCommand(event)">
+      </div>
+    </div>
+  </div>
+
+  <!-- Background Audio Element -->
   <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73185.mp3?filename=cyberpunk-2099-10701.mp3"></audio>
 
   <script>
+    // Live Clock Function
     function updateClock() {
       const now = new Date();
       const options = { timeZone: 'Asia/Tehran', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
@@ -596,11 +698,13 @@
     setInterval(updateClock, 1000);
     updateClock();
 
+    // Audio Player Handlers
     const audio = document.getElementById('bgAudio');
     const playIcon = document.getElementById('playIcon');
     const visualizer = document.getElementById('visualizer');
 
     function toggleAudio() {
+      playHoverSFX(600);
       if (audio.paused) {
         audio.play();
         playIcon.className = 'fa-solid fa-pause';
@@ -612,16 +716,83 @@
       }
     }
 
+    // Modal Control Handlers
     function openTelegramModal() {
+      playHoverSFX(800);
       document.getElementById('tgModalOverlay').classList.add('active');
     }
     function closeTelegramModal() {
       document.getElementById('tgModalOverlay').classList.remove('active');
     }
+    function openTerminalModal() {
+      playHoverSFX(900);
+      document.getElementById('terminalModalOverlay').classList.add('active');
+      document.getElementById('terminalInput').focus();
+    }
+    function closeTerminalModal() {
+      document.getElementById('terminalModalOverlay').classList.remove('active');
+    }
 
-    const canvas = document.getElementById('particleCanvas');
+    // Web Audio Synthesizer SFX
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playHoverSFX(freq) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.08);
+    }
+
+    // 3D Tilt Card Physics
+    const cardWrapper = document.getElementById('cardWrapper');
+    document.addEventListener('mousemove', (e) => {
+      const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+      const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+      cardWrapper.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+    });
+
+    // Terminal Commands Handlers
+    function handleTerminalCommand(e) {
+      if (e.key === 'Enter') {
+        const input = document.getElementById('terminalInput');
+        const output = document.getElementById('terminalOutput');
+        const cmd = input.value.trim().toLowerCase();
+        
+        const line = document.createElement('div');
+        line.innerHTML = `<span style="color:var(--accent-magenta);">$ ${input.value}</span>`;
+        output.appendChild(line);
+
+        const response = document.createElement('div');
+        if (cmd === 'help') {
+          response.innerHTML = `COMMANDS: <span style="color:#fff;">whoami, skills, location, clear</span>`;
+        } else if (cmd === 'whoami') {
+          response.innerText = `[INFO]: AMIRALI ZARE | Cyber Developer & UI Designer.`;
+        } else if (cmd === 'skills') {
+          response.innerText = `[SKILLS]: HTML5, CSS3, JavaScript, Python, Git.`;
+        } else if (cmd === 'location') {
+          response.innerText = `[LOCATION]: Tabriz, Iran.`;
+        } else if (cmd === 'clear') {
+          output.innerHTML = '';
+          input.value = '';
+          return;
+        } else {
+          response.innerText = `[ERROR]: Command not recognized. Type 'help'.`;
+        }
+        output.appendChild(response);
+        output.scrollTop = output.scrollHeight;
+        input.value = '';
+      }
+    }
+
+    // Matrix Rain Canvas Animation
+    const canvas = document.getElementById('matrixCanvas');
     const ctx = canvas.getContext('2d');
-    let particles = [];
 
     function resizeCanvas() {
       canvas.width = window.innerWidth;
@@ -630,37 +801,29 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    class Particle {
-      constructor() { this.reset(); }
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() - 0.5) * 0.5;
-        this.speedY = (Math.random() - 0.5) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-      }
-      draw() {
-        ctx.fillStyle = `rgba(0, 243, 255, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+    const chars = '01AMIRALIZARECYBERPUNK01';
+    const fontSize = 14;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(2, 3, 7, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00f3ff';
+      ctx.font = fontSize + 'px Share Tech Mono';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars.charAt(Math.floor(Math.random() * chars.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
       }
     }
-
-    for (let i = 0; i < 50; i++) particles.push(new Particle());
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
+    setInterval(drawMatrix, 35);
   </script>
 </body>
 </html>
